@@ -9,6 +9,11 @@ class Arvore(object):
         self.raiz = noRaiz  # nó raiz da árvore
         self.prof = None    # profundidade da árvore
 
+    def buscaDFS(self):
+        
+        return 1
+        
+
 
 if __name__ == "__main__":
     meuno = No(2, 3)
