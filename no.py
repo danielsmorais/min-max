@@ -3,7 +3,7 @@
 #DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
 
 class No(object):
-    def __init__(self, tabela, valor=0, pai=None):
+    def __init__(self, tabela, valor=None, pai=None):
         self.tabela = tabela    # tabela do jogo
         self.valor = valor      # valor
         self.posicao = None     # verificar uso da posicao
