@@ -6,4 +6,4 @@ Algoritmo min-max aplicado a um jogo-da-velha utilizando PyQt5 e Python 3.
 
 ---|
 
-[Daniel Morais](https://github.com/danielsmorais) |
+[Daniel Morais](https://github.com/danielsmorais)
