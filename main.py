@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+#DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
+
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
