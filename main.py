@@ -7,7 +7,6 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from minmax import MinMax
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
