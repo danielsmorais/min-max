@@ -322,7 +322,18 @@ class Ui_MainWindow(object):
             self.click[8] = True
 
     def click_play(self):
-        print("okok")
+        self.pushButton_1.setText("")
+        self.pushButton_2.setText("")
+        self.pushButton_3.setText("")
+        self.pushButton_4.setText("")
+        self.pushButton_5.setText("")
+        self.pushButton_6.setText("")
+        self.pushButton_7.setText("")
+        self.pushButton_8.setText("")
+        self.pushButton_9.setText("")
+
+        self.jog = 0
+        self.click = [False, False, False, False, False, False, False, False, False]
 
     def click_r1(self):
         self.comboBox_nivel.setEnabled(False)
