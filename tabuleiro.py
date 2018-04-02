@@ -15,6 +15,9 @@ class Tabuleiro(object):
     def setTabuleiro(self, tabuleiro):
         self.tabuleiro = tabuleiro
 
+    def setLocal(self,point):
+        self.tabuleiro
+
     def show(self):
         for element in [self.tabuleiro[i:i + 3] for i in range(0, len(self.tabuleiro), 3)]:
             print(element)

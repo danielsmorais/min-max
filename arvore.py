@@ -10,7 +10,7 @@ class Arvore(object):
         self.prof = None    # profundidade da árvore
 
     def buscaDFS(self):
-        
+                
         return 1
         
 
