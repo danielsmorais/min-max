@@ -3,15 +3,12 @@
 #DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
 
 class No(object):
-    def __init__(self, tabuleiro, valor=None, pai=None):
+    def __init__(self, tabuleiro, pai=None):
         self.tabuleiro = tabuleiro      # tabela do jogo
-        self.valor = valor              # valor
+        self.valor = None              # valor
         self.posicao = None             # verificar uso da posicao
         self.pai = pai                  # nó de referência
         self.filhos = []                # lista de nós filhos
-
-    def addFilho(self, noFilho):
-        self.filhos.append(noFilho)
 
     def setTabuleiro(self, tab):
         self.tabuleiro = tab
@@ -37,8 +34,8 @@ class No(object):
     def getPai(self):
         return self.pai
 
-    def setFilhos(self,filho):
-        self.filhos.append(filho)
+    def addFilho(self, noFilho):
+        self.filhos.append(noFilho)
     
     def getFihos(self):
         return self.filhos
@@ -46,5 +43,9 @@ class No(object):
 
 if __name__ == "__main__":
     meuno = No(2, 3)
-    meuno.addFilho(No(5, 3, meuno))
+    meuno.addFilho(No(5, meuno))
+    meuno.addFilho(No(4, meuno))
     print(meuno.filhos[0].tabuleiro)
+
+for ele in meuno.filhos:
+    print(ele.tabuleiro)
