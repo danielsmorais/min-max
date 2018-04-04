@@ -2,6 +2,8 @@
 
 #DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
 
+from point import Point
+
 class Tabuleiro(object):
     
     winner = ([0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]) #lista de winners
@@ -17,6 +19,9 @@ class Tabuleiro(object):
 
     def setLocal(self,point):
         self.tabuleiro
+
+    def addElemento(self, p, ele):
+        self.tabuleiro[p.x][p.y] = ele
 
     def show(self):
         for element in [self.tabuleiro[i:i + 3] for i in range(0, len(self.tabuleiro), 3)]:
