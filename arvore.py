@@ -5,14 +5,28 @@
 from no import No
 
 class Arvore(object):
-    def __init__(self, noRaiz):
+    def __init__(self, noRaiz = No(None,None)):
         self.raiz = noRaiz  # nó raiz da árvore
         self.prof = None    # profundidade da árvore
 
-    def buscaDFS(self):
-                
-        return 1
-        
+    def gerarArvore(self):
+        for ele in self.raiz.filhos:
+            ele.addFilho(No(None,None))
+
+    def setRaiz(self,r):
+        self.raiz = r
+
+    def getRaiz(self):
+        return self.raiz
+
+    def setProf(self, prof):
+        self.prof = prof
+
+    def getProf(self):
+        return self.prof
+
+    def buscaDFS(self):                
+        return 1        
 
 
 if __name__ == "__main__":

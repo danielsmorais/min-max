@@ -5,7 +5,7 @@
 class No(object):
     def __init__(self, tabuleiro, pai=None):
         self.tabuleiro = tabuleiro      # tabela do jogo
-        self.valor = None              # valor
+        self.valor = None               # valor
         self.posicao = None             # verificar uso da posicao
         self.pai = pai                  # nó de referência
         self.filhos = []                # lista de nós filhos
