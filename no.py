@@ -2,7 +2,7 @@
 
 #DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
 
-from tabuleiro import Tabuleiro
+from tabuleiro import Tabuleiro as Tab
 
 class No(object):
     def __init__(self, tabuleiro, pai=None):
@@ -43,11 +43,10 @@ class No(object):
         return self.filhos
   
 
-''' if __name__ == "__main__":
+if __name__ == "__main__":
     meuno = No(2, 3)
-    meuno.addFilho(No(5, meuno))
-    meuno.addFilho(No(4, meuno))
-    print(meuno.filhos[0].tabuleiro)
+    meuno.addFilho(No(Tab([[1, 3, 2], [4, 5, 5], [6, 7, 8]]), meuno))
+    meuno.addFilho(No(Tab([[6, 6, 6], [4, 5, 5], [6, 7, 8]]), meuno))
 
     for ele in meuno.filhos:
-        print(ele.tabuleiro) '''
+        print(ele.tabuleiro.show())
