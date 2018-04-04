@@ -2,6 +2,8 @@
 
 #DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
 
+from tabuleiro import Tabuleiro
+
 class No(object):
     def __init__(self, tabuleiro, pai=None):
         self.tabuleiro = tabuleiro      # tabela do jogo
@@ -41,11 +43,11 @@ class No(object):
         return self.filhos
   
 
-if __name__ == "__main__":
+''' if __name__ == "__main__":
     meuno = No(2, 3)
     meuno.addFilho(No(5, meuno))
     meuno.addFilho(No(4, meuno))
     print(meuno.filhos[0].tabuleiro)
 
-for ele in meuno.filhos:
-    print(ele.tabuleiro)
+    for ele in meuno.filhos:
+        print(ele.tabuleiro) '''

@@ -26,9 +26,9 @@ class Tabuleiro(object):
         self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]]
 
         
-if __name__ == "__main__":
+''' if __name__ == "__main__":
     ta = [[1, 3, 2], [4, 5, 5], [6, 7, 8]]
     tab = Tabuleiro(ta)
-    tab.show()
+    tab.show() '''
 
 

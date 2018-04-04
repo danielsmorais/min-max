@@ -5,7 +5,7 @@
 from no import No
 
 class Arvore(object):
-    def __init__(self, noRaiz = No(None,None)):
+    def __init__(self, noRaiz):
         self.raiz = noRaiz  # nó raiz da árvore
         self.prof = None    # profundidade da árvore
 
@@ -29,8 +29,10 @@ class Arvore(object):
         return 1        
 
 
-if __name__ == "__main__":
+''' if __name__ == "__main__":
     meuno = No(2, 3)
     arv = Arvore(meuno)
+    arv.gerarArvore()
 
-    print(arv.raiz.valor)
+
+    print(arv.raiz.tabuleiro) '''
