@@ -12,6 +12,8 @@ class Arvore(object):
     def gerarArvore(self):
         for ele in self.raiz.filhos:
             ele.addFilho(No(None,None))
+        
+        #TODO finalizar a geracao da arvore
 
     def setRaiz(self,r):
         self.raiz = r

@@ -15,7 +15,7 @@ class JVelha(object):
         self.tab = Tab()
 
     def minmax(self, id):
-        #TODO chamar a tabela do próprio jogo como raiz
+        #TODO chamar a tabela do proprio jogo como raiz para 
 
         return 1
 

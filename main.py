@@ -10,6 +10,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import pyqtSlot
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -336,6 +341,7 @@ class Ui_MainWindow(object):
 
         self.jog = 0
         self.click = [False, False, False, False, False, False, False, False, False]
+
 
     def click_r1(self):
         self.comboBox_nivel.setEnabled(False)
