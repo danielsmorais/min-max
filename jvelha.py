@@ -19,7 +19,7 @@ class JVelha(object):
         self.contJog += 1
 
     def zerarContJog(self):
-        self.contJog = 0;
+        self.contJog = 0
 
     def getContJog(self):
         return self.contJog
@@ -29,11 +29,12 @@ class JVelha(object):
         
 
     def minmax(self, id):
-        #TODO chamar a tabela do proprio jogo como raiz para 
+        #TODO chamar a tabela do proprio jogo como raiz para o metodo
 
         return 1
 
-    def isVencedor(self, tabuleiro, jogador):
+    def isVencedor(self, jogador):
+        #TODO chamar a tabela do proprio jogo
         pass
     
         
