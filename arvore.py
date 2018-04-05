@@ -3,6 +3,7 @@
 #DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
 
 from no import No
+from tabuleiro import Tabuleiro as Tab
 
 class Arvore(object):
     def __init__(self, noRaiz):
@@ -12,6 +13,13 @@ class Arvore(object):
     def gerarArvore(self):
         for ele in self.raiz.filhos:
             ele.addFilho(No(None,None))
+
+        # TODO condicao para verificar se eh possivel ter filhos
+
+        for i in range(self.prof):
+            noh = No(Tab(),self.raiz)   # teste
+            self.raiz.addFilho()
+            
         
         #TODO finalizar a geracao da arvore
 

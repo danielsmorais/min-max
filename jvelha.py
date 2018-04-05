@@ -25,10 +25,9 @@ class JVelha(object):
         return self.contJog
 
     def getTabuleiro(self):
-        return self.tab
-        
+        return self.tab        
 
-    def minmax(self, id):
+    def minmax(self, jogador):
         #TODO chamar a tabela do proprio jogo como raiz para o metodo
 
         return 1

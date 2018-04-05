@@ -11,6 +11,7 @@ class No(object):
         self.posicao = None             # verificar uso da posicao
         self.pai = pai                  # nó de referência
         self.filhos = []                # lista de nós filhos
+        #self.prof                      # profundidade do noh em relacao a raiz
 
     def setTabuleiro(self, tab):
         self.tabuleiro = tab
