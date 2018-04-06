@@ -15,8 +15,8 @@ class Tabuleiro(object):
     def setTabuleiro(self, tabuleiro):
         self.tabuleiro = tabuleiro
 
-    def setLocal(self,point):
-        self.tabuleiro
+    def setLocal(self,point,tag):
+        self.tabuleiro[point.x][point.y] = tag
 
     def addElemento(self, p, ele):
         self.tabuleiro[p.x][p.y] = ele
@@ -29,6 +29,15 @@ class Tabuleiro(object):
                     cont += 1
         return cont               
         
+    def get1None(self):
+        for i in range(3):
+            for j in range(3):
+                if self.tabuleiro[i][j] == None:
+                    return Point(i,j)
+                
+            
+        pass
+
     def show(self):
         for element in [self.tabuleiro[i:i + 3] for i in range(0, len(self.tabuleiro), 3)]:
             print(element)

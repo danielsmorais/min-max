@@ -17,6 +17,27 @@ class Arvore(object):
         '''         for i in range(self.prof):
             noh = No(Tab(),self.raiz)   # teste
             self.raiz.addFilho() '''
+
+        if self.prof==0 or self.prof == None:
+            print("A raiz é a própria árvore.")
+        else:
+            contaux = self.raiz.tabuleiro.contNone()
+            tabaux = self.raiz.tabuleiro
+
+            tag = 'x'or 'o'
+
+            for i in range(contaux): 
+                
+                pointaux = tabaux.get1None()
+                tabaux.setLocal(pointaux,tag)
+                noaux = No(tabaux)
+                noaux.setPosicao(pointaux)
+
+                self.raiz.addFilho(noaux,self.raiz)
+
+                #TODO acrescentar mais uma linha de addFilho()
+                
+            
             
         
         #TODO finalizar a geracao da arvore
