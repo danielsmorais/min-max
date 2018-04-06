@@ -40,7 +40,7 @@ class No(object):
     def addFilho(self, noFilho):
         self.filhos.append(noFilho)
     
-    def getFihos(self):
+    def getFilhos(self):
         return self.filhos
   
 

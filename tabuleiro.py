@@ -21,6 +21,14 @@ class Tabuleiro(object):
     def addElemento(self, p, ele):
         self.tabuleiro[p.x][p.y] = ele
 
+    def contNone(self):
+        cont = 0
+        for i in range(3):
+            for j in range(3):
+                if self.tabuleiro[i][j] == None:
+                    cont += 1
+        return cont               
+        
     def show(self):
         for element in [self.tabuleiro[i:i + 3] for i in range(0, len(self.tabuleiro), 3)]:
             print(element)
@@ -29,9 +37,11 @@ class Tabuleiro(object):
         self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]]
 
         
-''' if __name__ == "__main__":
-    ta = [[1, 3, 2], [4, 5, 5], [6, 7, 8]]
+if __name__ == "__main__":
+    ta = [[1, None, 2], [None, 5, None], [6, 7, None]]
     tab = Tabuleiro(ta)
-    tab.show() '''
+    tab.show()
+
+    print(tab.contNone())
 
 
