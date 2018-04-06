@@ -5,7 +5,7 @@
 from tabuleiro import Tabuleiro as Tab
 
 class No(object):
-    def __init__(self, tabuleiro, pai=None):
+    def __init__(self, tabuleiro = Tab(), pai=None):
         self.tabuleiro = tabuleiro      # tabela do jogo
         self.valor = None               # valor
         self.posicao = None             # verificar uso da posicao
@@ -45,7 +45,7 @@ class No(object):
   
 
 if __name__ == "__main__":
-    meuno = No(2, 3)
+    meuno = No(2, None)
     meuno.addFilho(No(Tab([[1, 3, 2], [4, 5, 5], [6, 7, 8]]), meuno))
     meuno.addFilho(No(Tab([[6, 6, 6], [4, 5, 5], [6, 7, 8]]), meuno))
 

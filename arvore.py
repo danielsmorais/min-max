@@ -8,15 +8,15 @@ from tabuleiro import Tabuleiro as Tab
 class Arvore(object):
     def __init__(self, noRaiz):
         self.raiz = noRaiz  # nó raiz da árvore
-        self.prof = self.raiz.tabuleiro.contNone()    # profundidade da árvore
+        self.prof = None    # profundidade da árvore
 
     def gerarArvore(self):
         
         # TODO condicao para verificar se eh possivel ter filhos
 
-        for i in range(self.prof):
+        '''         for i in range(self.prof):
             noh = No(Tab(),self.raiz)   # teste
-            self.raiz.addFilho()
+            self.raiz.addFilho() '''
             
         
         #TODO finalizar a geracao da arvore
@@ -27,8 +27,11 @@ class Arvore(object):
     def getRaiz(self):
         return self.raiz
 
-    def setProf(self, prof):
+    def setProf(self,prof):
         self.prof = prof
+
+    def addProf(self):
+        self.prof = self.raiz.tabuleiro.contNone()
 
     def getProf(self):
         return self.prof
@@ -38,9 +41,12 @@ class Arvore(object):
 
 
 if __name__ == "__main__":
-    meuno = No(2, 3)
+    
+    meuno = No(Tab([[1, None, 2], [None, 5, None], [6, 7, None]]))
 
     arv = Arvore(meuno)
+
+    print(arv.raiz.tabuleiro.contNone())
 
     for i in range(3):
         arv.raiz.addFilho(No(Tab([[1, 3, 2], [4, 5, 5], [6, 7, 8]]), meuno))
