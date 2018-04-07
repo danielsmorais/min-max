@@ -32,13 +32,14 @@ class Tabuleiro(object):
                     cont += 1
         return cont               
         
-    def get1None(self):
+    def getNone(self):
+        
+        lista = list()
         for i in range(3):
             for j in range(3):
                 if self.tabuleiro[i][j] == None:
-                    return Point(i,j)
-                else:
-                    return None
+                    lista.append(Point(i,j))
+        return lista
 
     def show(self):
         for element in [self.tabuleiro[i:i + 3] for i in range(0, len(self.tabuleiro), 3)]:
