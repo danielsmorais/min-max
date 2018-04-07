@@ -10,9 +10,7 @@ from arvore import Arvore as Arv
 class JVelha(object):
         
     def __init__(self):
-        self.paraVencer = ([0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
-                           [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6])
-        self.tab = Tab()
+        self.tab = Tab(None)
         self.contJog = 0
 
     def addContJog(self):
@@ -33,7 +31,21 @@ class JVelha(object):
         return 1
 
     def isVencedor(self, jogador):
-        #TODO chamar a tabela do proprio jogo
-        pass
-    
         
+        vencer = [[None, None, None], [None, None, None], [None, None, None]]
+
+        vencer = [[self.tab.getLocal(Point(0,0)), self.tab.getLocal(Point(0,1)), self.tab.getLocal(Point(0,2))],
+                  [self.tab.getLocal(Point(1,0)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(1,2))],
+                  [self.tab.getLocal(Point(2,0)), self.tab.getLocal(Point(2,1)), self.tab.getLocal(Point(2,2))],
+
+                  [self.tab.getLocal(Point(0,0)), self.tab.getLocal(Point(1,0)), self.tab.getLocal(Point(2,0))],
+                  [self.tab.getLocal(Point(0,1)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(2,1))],
+                  [self.tab.getLocal(Point(0,2)), self.tab.getLocal(Point(1,2)), self.tab.getLocal(Point(2,2))],
+                  
+                  [self.tab.getLocal(Point(0,0)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(2,2))],
+                  [self.tab.getLocal(Point(2,0)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(0,2))]]
+
+        if [jogador, jogador, jogador] in vencer:
+            return True
+        else:
+            return False

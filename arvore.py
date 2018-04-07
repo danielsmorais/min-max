@@ -10,7 +10,9 @@ class Arvore(object):
         self.raiz = noRaiz  # nó raiz da árvore
         self.prof = None    # profundidade da árvore
 
-    def gerarArvore(self):
+
+    # Fazer o minimax recursivo.
+    """     def gerarArvore(self,):
         
         # TODO condicao para verificar se eh possivel ter filhos
 
@@ -35,12 +37,8 @@ class Arvore(object):
 
                 self.raiz.addFilho(noaux,self.raiz)
 
-                #TODO acrescentar mais uma linha de addFilho()
-                
-            
-            
-        
-        #TODO finalizar a geracao da arvore
+                #TODO acrescentar mais uma linha de addFilho()        
+        #TODO finalizar a geracao da arvore """
 
     def setRaiz(self,r):
         self.raiz = r
