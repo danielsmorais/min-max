@@ -28,10 +28,23 @@ class JVelha(object):
     def minmax(self, no, prof, jogador):
         if self.isVencedor or no.prof == 0:
             return 1 #retornar a heuristica
-            
+
         #TODO chamar a tabela do proprio jogo como raiz para o metodo
         else:
             pass
+
+    def heuristica(self):
+        score = 0
+
+        if self.isVencedor('x'):
+            score = 1
+        elif self.isVencedor('o'):
+            score = -1
+        else:
+            score = 0
+
+        return score
+        
 
     def isVencedor(self, jogador):
         
