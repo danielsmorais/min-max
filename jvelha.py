@@ -25,10 +25,13 @@ class JVelha(object):
     def getTabuleiro(self):
         return self.tab        
 
-    def minmax(self, jogador):
+    def minmax(self, no, prof, jogador):
+        if self.isVencedor or no.prof == 0:
+            return 1 #retornar a heuristica
+            
         #TODO chamar a tabela do proprio jogo como raiz para o metodo
-
-        return 1
+        else:
+            pass
 
     def isVencedor(self, jogador):
         
@@ -41,7 +44,7 @@ class JVelha(object):
                   [self.tab.getLocal(Point(0,0)), self.tab.getLocal(Point(1,0)), self.tab.getLocal(Point(2,0))],
                   [self.tab.getLocal(Point(0,1)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(2,1))],
                   [self.tab.getLocal(Point(0,2)), self.tab.getLocal(Point(1,2)), self.tab.getLocal(Point(2,2))],
-                  
+
                   [self.tab.getLocal(Point(0,0)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(2,2))],
                   [self.tab.getLocal(Point(2,0)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(0,2))]]
 
