@@ -10,35 +10,28 @@ class Arvore(object):
         self.raiz = noRaiz  # nó raiz da árvore
         self.prof = None    # profundidade da árvore
 
+    def gerarArvore(self, raiz, noh, prof):
+    
 
-    # Fazer o minimax recursivo.
-    """     def gerarArvore(self,):
-        
-        # TODO condicao para verificar se eh possivel ter filhos
-
-        '''         for i in range(self.prof):
-            noh = No(Tab(),self.raiz)   # teste
-            self.raiz.addFilho() '''
-
-        if self.prof==0 or self.prof == None:
+        '''         if prof==0 or prof == None:
             print("A raiz é a própria árvore.")
+            return 
         else:
-            contaux = self.raiz.tabuleiro.contNone()
-            tabaux = self.raiz.tabuleiro
+            listNone = noh.tabuleiro.getNone()
 
-            tag = 'x'or 'o'
+            for item in listNone:
+                #tabuleiro add tag e pai           
+                auxTab = noh.tabuleiro
 
-            for i in range(contaux): 
-                
-                pointaux = tabaux.get1None()
-                tabaux.setLocal(pointaux,tag)
-                noaux = No(tabaux)
-                noaux.setPosicao(pointaux)
+                #como sempre a raiz é o computador, então toda profundidade par é 'O' e impar é 'X'
+                auxTab.setLocal(item, prof % 2 == 0 and "O" or "X")
 
-                self.raiz.addFilho(noaux,self.raiz)
+                auxNo = No(auxTab,noh)
+                auxNo.setPosicao(item)
 
-                #TODO acrescentar mais uma linha de addFilho()        
-        #TODO finalizar a geracao da arvore """
+                noh.addFilho(auxNo) '''
+               
+            #TODO acrescentar mais uma linha de addFilho()        
 
     def setRaiz(self,r):
         self.raiz = r
