@@ -55,21 +55,21 @@ class JVelha(object):
         else:
             return False
 
-    def minimax(self, tab, depth, player):
+    def minimax(self, tab, prof, player):
 
         if player == 1: # 1 PC | -1 PESSOA
             best = [-1, -1, -inf]
         else:
             best = [-1, -1, +inf]
 
-        if depth == 0 or self.isVencedor(tab, 1) or self.isVencedor(tab, -1):
+        if prof == 0 or self.isVencedor(tab, 1) or self.isVencedor(tab, -1):
             score = self.heuristica(tab)
             return [-1, -1, score]
 
         for item in tab.getNone(): #lista de points
 
             tab.setLocal(item, player)
-            score = self.minimax(tab, depth - 1, -player)
+            score = self.minimax(tab, prof - 1, -player)
             tab.setLocal(item, None)
             score[0], score[1] = item.x, item.y
 
@@ -82,11 +82,16 @@ class JVelha(object):
 
         return best     #retorna x y score
 
+    def jogada(self):
+        pass
+        
+        
 
 if __name__ == "__main__":
 
     jogo = JVelha()
     casa1 = list()
-    casa1.append(jogo.minimax(Tab([[-1, 1, -1], [1, 1, None], [1, -1, -1]]), 1, 1))
+    casa1.append(jogo.minimax(
+        Tab([[1, -1, -1], [None, 1, None], [None, None, None]]), 7, 1))
 
     print(casa1)

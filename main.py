@@ -9,6 +9,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from jvelha import JVelha
 
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
@@ -227,9 +228,12 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        ''' VARIAVEIS '''
-        self.jog = 0
+        # VARIAVEIS
         self.click = [False, False, False, False, False, False, False, False, False]
+
+        # INIT JOGO
+        jvelha = JVelha()
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -339,7 +343,7 @@ class Ui_MainWindow(object):
         self.pushButton_8.setText("")
         self.pushButton_9.setText("")
 
-        self.jog = 0
+        jvelha.contJog = 0
         self.click = [False, False, False, False, False, False, False, False, False]
 
 
@@ -362,14 +366,14 @@ class Ui_MainWindow(object):
         self.lineEdit_ip.setEnabled(True)
 
     def jogada(self):
-        if(self.jog < 8):
-            self.jog += 1
+        if(jvelha.contJog < 8):
+            jvelha.contJog += 1
         else:
             '''
             // fim de jogo
             // jogar novamente
             // limpar jogo '''
-            self.jog = 0
+            jvelha.contJog = 0
 
 
 if __name__ == "__main__":
