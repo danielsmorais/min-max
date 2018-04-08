@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
+# DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
@@ -17,14 +17,17 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(640, 480)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(640, 480))
         MainWindow.setMaximumSize(QtCore.QSize(640, 480))
@@ -70,26 +73,30 @@ class Ui_MainWindow(object):
         self.lineEdit_ip.setMaximumSize(QtCore.QSize(120, 25))
         self.lineEdit_ip.setWhatsThis("")
         self.lineEdit_ip.setAccessibleName("")
-        self.lineEdit_ip.setInputMethodHints(QtCore.Qt.ImhDigitsOnly|QtCore.Qt.ImhFormattedNumbersOnly|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhPreferNumbers)
+        self.lineEdit_ip.setInputMethodHints(
+            QtCore.Qt.ImhDigitsOnly | QtCore.Qt.ImhFormattedNumbersOnly | QtCore.Qt.ImhNoPredictiveText | QtCore.Qt.ImhPreferNumbers)
         self.lineEdit_ip.setPlaceholderText("")
         self.lineEdit_ip.setObjectName("lineEdit_ip")
         self.label_5 = QtWidgets.QLabel(self.groupBox)
         self.label_5.setGeometry(QtCore.QRect(20, 210, 38, 25))
-        self.label_5.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_5.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_5.setObjectName("label_5")
         self.lineEdit_porta = QtWidgets.QLineEdit(self.groupBox)
         self.lineEdit_porta.setGeometry(QtCore.QRect(60, 170, 120, 25))
         self.lineEdit_porta.setMaximumSize(QtCore.QSize(120, 25))
         self.lineEdit_porta.setWhatsThis("")
         self.lineEdit_porta.setAccessibleName("")
-        self.lineEdit_porta.setInputMethodHints(QtCore.Qt.ImhDigitsOnly|QtCore.Qt.ImhFormattedNumbersOnly|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhPreferNumbers)
+        self.lineEdit_porta.setInputMethodHints(
+            QtCore.Qt.ImhDigitsOnly | QtCore.Qt.ImhFormattedNumbersOnly | QtCore.Qt.ImhNoPredictiveText | QtCore.Qt.ImhPreferNumbers)
         self.lineEdit_porta.setInputMask("")
         self.lineEdit_porta.setText("")
         self.lineEdit_porta.setPlaceholderText("")
         self.lineEdit_porta.setObjectName("lineEdit_porta")
         self.label_6 = QtWidgets.QLabel(self.groupBox)
         self.label_6.setGeometry(QtCore.QRect(20, 170, 38, 25))
-        self.label_6.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_6.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_6.setObjectName("label_6")
         self.comboBox_inicia = QtWidgets.QComboBox(self.groupBox)
         self.comboBox_inicia.setGeometry(QtCore.QRect(20, 290, 161, 25))
@@ -111,7 +118,8 @@ class Ui_MainWindow(object):
         self.layoutWidget.setGeometry(QtCore.QRect(20, 40, 331, 321))
         self.layoutWidget.setObjectName("layoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.layoutWidget)
-        self.gridLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.gridLayout.setSizeConstraint(
+            QtWidgets.QLayout.SetDefaultConstraint)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.pushButton_1 = QtWidgets.QPushButton(self.layoutWidget)
@@ -143,10 +151,12 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.pushButton_3, 0, 2, 1, 1)
         self.pushButton_4 = QtWidgets.QPushButton(self.layoutWidget)
         self.pushButton_4.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.pushButton_4.sizePolicy().hasHeightForWidth())
         self.pushButton_4.setSizePolicy(sizePolicy)
         self.pushButton_4.setMinimumSize(QtCore.QSize(0, 0))
         self.pushButton_4.setMaximumSize(QtCore.QSize(100, 100))
@@ -235,28 +245,31 @@ class Ui_MainWindow(object):
         # INIT JOGO
         self.jvelha = JVelha()
 
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Jogo da Velha - MIN-MAX"))
+        MainWindow.setWindowTitle(_translate(
+            "MainWindow", "Jogo da Velha - MIN-MAX"))
         self.radioButton_2.setText(_translate("MainWindow", "PC x Humano"))
         self.radioButton_3.setText(_translate("MainWindow", "PC x iPC"))
         self.radioButton_1.setText(_translate("MainWindow", "Humano X Humano"))
         self.label.setText(_translate("MainWindow", "CONFIGURAÇÃO"))
         self.pushButton_play.setText(_translate("MainWindow", "Jogar"))
-        self.lineEdit_ip.setInputMask(_translate("MainWindow", "000.000.000.000"))
+        self.lineEdit_ip.setInputMask(
+            _translate("MainWindow", "000.000.000.000"))
         self.lineEdit_ip.setText(_translate("MainWindow", "..."))
         self.label_5.setText(_translate("MainWindow", "IP"))
         self.label_6.setText(_translate("MainWindow", "Porta"))
-        self.comboBox_inicia.setItemText(0, _translate("MainWindow", "Quem inicia?"))
+        self.comboBox_inicia.setItemText(
+            0, _translate("MainWindow", "Quem inicia?"))
         self.comboBox_inicia.setItemText(1, _translate("MainWindow", "PC"))
         self.comboBox_inicia.setItemText(2, _translate("MainWindow", "Humano"))
         self.comboBox_nivel.setItemText(0, _translate("MainWindow", "Fácil"))
         self.comboBox_nivel.setItemText(1, _translate("MainWindow", "Difícil"))
-        self.label_title.setText(_translate("MainWindow", "Jogo da Velha / MIN-MAX"))
+        self.label_title.setText(_translate(
+            "MainWindow", "Jogo da Velha / MIN-MAX"))
         self.label_autor.setText(_translate("MainWindow", "Daniel Morais"))
 
         self.pushButton_1.clicked.connect(self.click_1)
@@ -282,47 +295,38 @@ class Ui_MainWindow(object):
     def click_1(self):
         if(self.click[0] == False):
             self.jogada(0, 0, -1)
-            self.click[0] = True
 
     def click_2(self):
         if(self.click[1] == False):
-            self.jogada(0,1,-1)
-            self.click[1] = True
+            self.jogada(0, 1, -1)
 
     def click_3(self):
         if(self.click[2] == False):
-            self.jogada(0,2,-1)
-            self.click[2] = True
+            self.jogada(0, 2, -1)
 
     def click_4(self):
         if(self.click[3] == False):
-            self.jogada(1,0,-1)
-            self.click[3] = True
+            self.jogada(1, 0, -1)
 
     def click_5(self):
         if(self.click[4] == False):
-            self.jogada(1,1,-1)
-            self.click[4] = True
+            self.jogada(1, 1, -1)
 
     def click_6(self):
         if(self.click[5] == False):
-            self.jogada(1,2,-1)
-            self.click[5] = True
+            self.jogada(1, 2, -1)
 
     def click_7(self):
         if(self.click[6] == False):
-            self.jogada(2,0,-1)
-            self.click[6] = True
+            self.jogada(2, 0, -1)
 
     def click_8(self):
         if(self.click[7] == False):
-            self.jogada(2,1,-1)
-            self.click[7] = True
+            self.jogada(2, 1, -1)
 
     def click_9(self):
         if(self.click[8] == False):
-            self.jogada(2,2,-1)
-            self.click[8] = True
+            self.jogada(2, 2, -1)
 
     def click_play(self):
         self.pushButton_1.setText("")
@@ -345,23 +349,24 @@ class Ui_MainWindow(object):
         if self.radioButton_1.isChecked():
             pass
         elif self.radioButton_2.isChecked():
-            
-            self.jvelha.setNivel(self.comboBox_nivel.currentIndex())
 
-            if self.comboBox_inicia.currentIndex()==2:
+            ni = self.comboBox_nivel.currentIndex()
+            self.jvelha.setNivel(ni)
+
+            if self.comboBox_inicia.currentIndex() == 2:
                 self.jvelha.setJogador(-1)
             else:
                 self.jvelha.setJogador(1)
-                            
+
         elif self.radioButton_3.isChecked():
             pass
 
-        #inicio do jogo
+        # inicio do jogo
         if self.jvelha.getJogador() == 1:
-            self.jogada(None, None,1)
+            self.jogada(None, None, 1)
+            print("pc1")
         else:
             pass
-
 
     def click_r1(self):
         self.comboBox_nivel.setEnabled(False)
@@ -381,45 +386,88 @@ class Ui_MainWindow(object):
         self.lineEdit_porta.setEnabled(True)
         self.lineEdit_ip.setEnabled(True)
 
-    def jogada(self, x=None, y=None, player):
+    def marca(self, x, y, jogador):
         
-        if(self.jvelha.getContJog() < 9):
-            self.jvelha.addContJog()
+        if [x, y] == [0, 0]:
+            self.pushButton_1.setText(jogador == -1 and "X" or "O")
+            self.click[0] = True
+
+        elif [x, y] == [0, 1]:
+            self.pushButton_2.setText(jogador == -1 and "X" or "O")
+            self.click[1] = True
+
+        elif [x, y] == [0, 2]:
+            self.pushButton_3.setText(jogador == -1 and "X" or "O")
+            self.click[2] = True
+
+        elif [x, y] == [1, 0]:
+            self.pushButton_4.setText(jogador == -1 and "X" or "O")
+            self.click[3] = True
+
+        elif [x, y] == [1, 1]:
+            self.pushButton_5.setText(jogador == -1 and "X" or "O")
+            self.click[4] = True
+
+        elif [x, y] == [1, 2]:
+            self.pushButton_6.setText(jogador == -1 and "X" or "O")
+            self.click[5] = True
+
+        elif [x, y] == [2, 0]:
+            self.pushButton_7.setText(jogador == -1 and "X" or "O")
+            self.click[6] = True
+
+        elif [x, y] == [2, 1]:
+            self.pushButton_8.setText(jogador == -1 and "X" or "O")
+            self.click[7] = True
+
+        elif [x, y] == [2, 2]:
+            self.pushButton_9.setText(jogador == -1 and "X" or "O")
+            self.click[8] = True
+
+    def jogada(self, x, y, player):
+        
+        if self.jvelha.isVencedor(self.jvelha.tab, 1) or not self.jvelha.isVencedor(self.jvelha.tab, -1):
             
-            if player==1:
-                if self.jvelha.getNivel() == 0:
-                    pass
-                elif self.jvelha.getNivel() == 1:
-                    pass
+            print("alguém ganhou!!!!")
+            
+            pass
 
-            else:
-                self.jvelha.tab.setLocal(Point(x,y),-1)
-                
-                if [x,y] == [0,0]:
-                    self.pushButton_1.setText("X")
-                elif [x,y] == [0,1]:
-                    self.pushButton_2.setText("X")
-                elif [x,y] == [0,2]:
-                    self.pushButton_3.setText("X")
-                elif [x,y] == [1,0]:
-                    self.pushButton_4.setText("X")
-                elif [x,y] == [1,1]:
-                    self.pushButton_5.setText("X")
-                elif [x,y] == [1,2]:
-                    self.pushButton_6.setText("X")
-                elif [x,y] == [2,0]:
-                    self.pushButton_7.setText("X")
-                elif [x,y] == [2,1]:
-                    self.pushButton_8.setText("X")
-                elif [x,y] == [2,2]:
-                    self.pushButton_9.setText("X")        
         else:
-            '''
-            // fim de jogo
-            // jogar novamente
-            // limpar jogo '''
+            if self.jvelha.getContJog() < 9:
+                self.jvelha.addContJog()
 
-            self.jvelha.zerarContJog()
+                if player == 1: #FASE PC
+
+                    print("pc2")
+
+                    if self.jvelha.getNivel() == 0: #NIVEL FACIL
+                        print("pc4")
+                        pass
+                    elif self.jvelha.getNivel() == 1: #NIVEL DIFICIL 
+                        print("pc3")
+                        aux = []
+                        aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), self.jvelha.tab.contNone(), 1)
+
+                        print(aux)
+
+                        self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
+                        self.marca(aux[0], aux[1], 1)
+
+                    else:
+                        pass
+
+                else:           
+                    self.jvelha.tab.setLocal(Point(x, y), -1)
+                    self.marca(x,y,-1)
+
+                    self.jogada(None,None,1)
+            else:
+                '''
+                // fim de jogo
+                // jogar novamente
+                // limpar jogo '''
+
+                self.jvelha.zerarContJog()
 
 
 if __name__ == "__main__":
@@ -430,4 +478,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-

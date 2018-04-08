@@ -14,8 +14,8 @@ class JVelha(object):
     def __init__(self):
         self.tab = Tab(None)
         self.contJog = 0
-        self.jogador = 1  #humano -1 | pc +1
-        self.nivel = 0      
+        self.jogador = None #humano -1 | pc +1
+        self.nivel = None      
 
     def addContJog(self):
         self.contJog += 1
@@ -29,11 +29,11 @@ class JVelha(object):
     def getTabuleiro(self):
         return self.tab    
 
-    def setNivel(self, nivel)    :
+    def setNivel(self, nivel):
         self.nivel = nivel
 
     def getNivel(self):
-        return self.getNivel
+        return self.nivel
 
     def setJogador(self, jogador):
         self.jogador = jogador
@@ -94,17 +94,14 @@ class JVelha(object):
                     best = score  # min value
 
         return best     #retorna x y score
-
-    def jogada(self):
-        pass
         
         
 
 if __name__ == "__main__":
 
     jogo = JVelha()
-    casa1 = list()
-    casa1.append(jogo.minimax(
-        Tab([[1, -1, -1], [None, 1, None], [None, None, None]]), 7, 1))
+    casa1 = []
+    casa1 = jogo.minimax(
+        Tab([[1, -1, -1], [None, 1, None], [None, None, None]]), 7, 1)
 
-    print(casa1)
+    print(casa1[1])
