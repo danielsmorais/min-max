@@ -7,11 +7,14 @@ from no import No
 from tabuleiro import Tabuleiro as Tab
 from arvore import Arvore as Arv
 
+from math import inf
+
 class JVelha(object):
         
     def __init__(self):
         self.tab = Tab(None)
         self.contJog = 0
+        self.jogador = None  #humano -1 | pc +1        
 
     def addContJog(self):
         self.contJog += 1
@@ -25,43 +28,65 @@ class JVelha(object):
     def getTabuleiro(self):
         return self.tab        
 
-    def minmax(self, no, prof, jogador):
-        if self.isVencedor or no.prof == 0:
-            return 1 #retornar a heuristica
+    def heuristica(self, tab):
 
-        #TODO chamar a tabela do proprio jogo como raiz para o metodo
+        if self.isVencedor(tab, 1):
+            return 1
+        elif self.isVencedor(tab, -1):
+            return -1
         else:
-            pass
+            return 0
 
-    def heuristica(self):
-        score = 0
+    def isVencedor(self, tab, jogador):
 
-        if self.isVencedor('x'):
-            score = 1
-        elif self.isVencedor('o'):
-            score = -1
-        else:
-            score = 0
+        vencer = [[tab.getLocal(Point(0, 0)), tab.getLocal(Point(0, 1)), tab.getLocal(Point(0, 2))],
+                  [tab.getLocal(Point(1, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(1, 2))],
+                  [tab.getLocal(Point(2, 0)), tab.getLocal(Point(2, 1)), tab.getLocal(Point(2, 2))],
 
-        return score
-        
+                  [tab.getLocal(Point(0, 0)), tab.getLocal(Point(1, 0)), tab.getLocal(Point(2, 0))],
+                  [tab.getLocal(Point(0, 1)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(2, 1))],
+                  [tab.getLocal(Point(0, 2)), tab.getLocal(Point(1, 2)), tab.getLocal(Point(2, 2))],
 
-    def isVencedor(self, jogador):
-        
-        vencer = [[None, None, None], [None, None, None], [None, None, None]]
-
-        vencer = [[self.tab.getLocal(Point(0,0)), self.tab.getLocal(Point(0,1)), self.tab.getLocal(Point(0,2))],
-                  [self.tab.getLocal(Point(1,0)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(1,2))],
-                  [self.tab.getLocal(Point(2,0)), self.tab.getLocal(Point(2,1)), self.tab.getLocal(Point(2,2))],
-
-                  [self.tab.getLocal(Point(0,0)), self.tab.getLocal(Point(1,0)), self.tab.getLocal(Point(2,0))],
-                  [self.tab.getLocal(Point(0,1)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(2,1))],
-                  [self.tab.getLocal(Point(0,2)), self.tab.getLocal(Point(1,2)), self.tab.getLocal(Point(2,2))],
-
-                  [self.tab.getLocal(Point(0,0)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(2,2))],
-                  [self.tab.getLocal(Point(2,0)), self.tab.getLocal(Point(1,1)), self.tab.getLocal(Point(0,2))]]
+                  [tab.getLocal(Point(0, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(2, 2))],
+                  [tab.getLocal(Point(2, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(0, 2))]]
 
         if [jogador, jogador, jogador] in vencer:
             return True
         else:
             return False
+
+    def minimax(self, tab, depth, player):
+
+        if player == 1: # 1 PC | -1 PESSOA
+            best = [-1, -1, -inf]
+        else:
+            best = [-1, -1, +inf]
+
+        if depth == 0 or self.isVencedor(tab, 1) or self.isVencedor(tab, -1):
+            score = self.heuristica(tab)
+            return [-1, -1, score]
+
+        for item in tab.getNone(): #lista de points
+
+            tab.setLocal(item, player)
+            score = self.minimax(tab, depth - 1, -player)
+            tab.setLocal(item, None)
+            score[0], score[1] = item.x, item.y
+
+            if player == 1:
+                if score[2] > best[2]:
+                    best = score  # max value
+            else:
+                if score[2] < best[2]:
+                    best = score  # min value
+
+        return best     #retorna x y score
+
+
+if __name__ == "__main__":
+
+    jogo = JVelha()
+    casa1 = list()
+    casa1.append(jogo.minimax(Tab([[-1, 1, -1], [1, 1, None], [1, -1, -1]]), 1, 1))
+
+    print(casa1)
