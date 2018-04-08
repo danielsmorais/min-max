@@ -14,7 +14,9 @@ class JVelha(object):
     def __init__(self):
         self.tab = Tab(None)
         self.contJog = 0
-        self.jogador = None  #humano -1 | pc +1        
+        self.jogador = None  #humano -1 | pc +1
+        self.nivel = 0
+        self.jogador1 = 1 # 1 or 2         
 
     def addContJog(self):
         self.contJog += 1

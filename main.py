@@ -229,10 +229,10 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         # VARIAVEIS
-        self.click = [False, False, False, False, False, False, False, False, False]
+        self.click = [True, True, True, True, True, True, True, True, True]
 
         # INIT JOGO
-        jvelha = JVelha()
+        self.jvelha = JVelha()
 
 
         self.retranslateUi(MainWindow)
@@ -251,8 +251,8 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "IP"))
         self.label_6.setText(_translate("MainWindow", "Porta"))
         self.comboBox_inicia.setItemText(0, _translate("MainWindow", "Quem inicia?"))
-        self.comboBox_inicia.setItemText(1, _translate("MainWindow", "Jogador 1"))
-        self.comboBox_inicia.setItemText(2, _translate("MainWindow", "Jogador 2"))
+        self.comboBox_inicia.setItemText(1, _translate("MainWindow", "PC"))
+        self.comboBox_inicia.setItemText(2, _translate("MainWindow", "Humano"))
         self.comboBox_nivel.setItemText(0, _translate("MainWindow", "Fácil"))
         self.comboBox_nivel.setItemText(1, _translate("MainWindow", "Difícil"))
         self.label_title.setText(_translate("MainWindow", "Jogo da Velha / MIN-MAX"))
@@ -280,55 +280,55 @@ class Ui_MainWindow(object):
 
     def click_1(self):
         if(self.click[0] == False):
-            self.pushButton_1.setText(self.jog % 2 == 0 and "X" or "O")
+            self.pushButton_1.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
             self.jogada()
             self.click[0] = True
 
     def click_2(self):
         if(self.click[1] == False):
-            self.pushButton_2.setText(self.jog % 2 == 0 and "X" or "O")
+            self.pushButton_2.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
             self.jogada()
             self.click[1] = True
 
     def click_3(self):
         if(self.click[2] == False):
-            self.pushButton_3.setText(self.jog % 2 == 0 and "X" or "O")
+            self.pushButton_3.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
             self.jogada()
             self.click[2] = True
 
     def click_4(self):
         if(self.click[3] == False):
-            self.pushButton_4.setText(self.jog % 2 == 0 and "X" or "O")
+            self.pushButton_4.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
             self.jogada()
             self.click[3] = True
 
     def click_5(self):
         if(self.click[4] == False):
-            self.pushButton_5.setText(self.jog % 2 == 0 and "X" or "O")
+            self.pushButton_5.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
             self.jogada()
             self.click[4] = True
 
     def click_6(self):
         if(self.click[5] == False):
-            self.pushButton_6.setText(self.jog % 2 == 0 and "X" or "O")
+            self.pushButton_6.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
             self.jogada()
             self.click[5] = True
 
     def click_7(self):
         if(self.click[6] == False):
-            self.pushButton_7.setText(self.jog % 2 == 0 and "X" or "O")
+            self.pushButton_7.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
             self.jogada()
             self.click[6] = True
 
     def click_8(self):
         if(self.click[7] == False):
-            self.pushButton_8.setText(self.jog % 2 == 0 and "X" or "O")
+            self.pushButton_8.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
             self.jogada()
             self.click[7] = True
 
     def click_9(self):
         if(self.click[8] == False):
-            self.pushButton_9.setText(self.jog % 2 == 0 and "X" or "O")
+            self.pushButton_9.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
             self.jogada()
             self.click[8] = True
 
@@ -343,8 +343,27 @@ class Ui_MainWindow(object):
         self.pushButton_8.setText("")
         self.pushButton_9.setText("")
 
-        jvelha.contJog = 0
+        self.jvelha.tab.clear()
+        self.jvelha.zerarContJog()
+
         self.click = [False, False, False, False, False, False, False, False, False]
+
+        # análise das configurações
+
+        if self.radioButton_1.isChecked():
+            pass
+        elif self.radioButton_2.isChecked():
+            nivel = self.comboBox_nivel.currentIndex()
+            jogador = self.comboBox_inicia.currentIndex() 
+
+            print(nivel)
+
+        elif self.radioButton_3.isChecked():
+            pass
+
+
+
+
 
 
     def click_r1(self):
@@ -366,14 +385,15 @@ class Ui_MainWindow(object):
         self.lineEdit_ip.setEnabled(True)
 
     def jogada(self):
-        if(jvelha.contJog < 8):
-            jvelha.contJog += 1
+        if(self.jvelha.getContJog() < 8):
+            self.jvelha.addContJog()
         else:
             '''
             // fim de jogo
             // jogar novamente
             // limpar jogo '''
-            jvelha.contJog = 0
+
+            self.jvelha.zerarContJog()
 
 
 if __name__ == "__main__":
