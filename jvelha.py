@@ -14,9 +14,8 @@ class JVelha(object):
     def __init__(self):
         self.tab = Tab(None)
         self.contJog = 0
-        self.jogador = None  #humano -1 | pc +1
-        self.nivel = 0
-        self.jogador1 = 1 # 1 or 2         
+        self.jogador = 1  #humano -1 | pc +1
+        self.nivel = 0      
 
     def addContJog(self):
         self.contJog += 1
@@ -28,7 +27,19 @@ class JVelha(object):
         return self.contJog
 
     def getTabuleiro(self):
-        return self.tab        
+        return self.tab    
+
+    def setNivel(self, nivel)    :
+        self.nivel = nivel
+
+    def getNivel(self):
+        return self.getNivel
+
+    def setJogador(self, jogador):
+        self.jogador = jogador
+
+    def getJogador(self):
+        return self.jogador
 
     def heuristica(self, tab):
 

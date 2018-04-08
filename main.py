@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from jvelha import JVelha
+from point import Point
 
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
@@ -280,56 +281,47 @@ class Ui_MainWindow(object):
 
     def click_1(self):
         if(self.click[0] == False):
-            self.pushButton_1.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
-            self.jogada()
+            self.jogada(0, 0, -1)
             self.click[0] = True
 
     def click_2(self):
         if(self.click[1] == False):
-            self.pushButton_2.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
-            self.jogada()
+            self.jogada(0,1,-1)
             self.click[1] = True
 
     def click_3(self):
         if(self.click[2] == False):
-            self.pushButton_3.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
-            self.jogada()
+            self.jogada(0,2,-1)
             self.click[2] = True
 
     def click_4(self):
         if(self.click[3] == False):
-            self.pushButton_4.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
-            self.jogada()
+            self.jogada(1,0,-1)
             self.click[3] = True
 
     def click_5(self):
         if(self.click[4] == False):
-            self.pushButton_5.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
-            self.jogada()
+            self.jogada(1,1,-1)
             self.click[4] = True
 
     def click_6(self):
         if(self.click[5] == False):
-            self.pushButton_6.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
-            self.jogada()
+            self.jogada(1,2,-1)
             self.click[5] = True
 
     def click_7(self):
         if(self.click[6] == False):
-            self.pushButton_7.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
-            self.jogada()
+            self.jogada(2,0,-1)
             self.click[6] = True
 
     def click_8(self):
         if(self.click[7] == False):
-            self.pushButton_8.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
-            self.jogada()
+            self.jogada(2,1,-1)
             self.click[7] = True
 
     def click_9(self):
         if(self.click[8] == False):
-            self.pushButton_9.setText(self.jvelha.getContJog() % 2 == 0 and "X" or "O")
-            self.jogada()
+            self.jogada(2,2,-1)
             self.click[8] = True
 
     def click_play(self):
@@ -353,17 +345,22 @@ class Ui_MainWindow(object):
         if self.radioButton_1.isChecked():
             pass
         elif self.radioButton_2.isChecked():
-            nivel = self.comboBox_nivel.currentIndex()
-            jogador = self.comboBox_inicia.currentIndex() 
+            
+            self.jvelha.setNivel(self.comboBox_nivel.currentIndex())
 
-            print(nivel)
-
+            if self.comboBox_inicia.currentIndex()==2:
+                self.jvelha.setJogador(-1)
+            else:
+                self.jvelha.setJogador(1)
+                            
         elif self.radioButton_3.isChecked():
             pass
 
-
-
-
+        #inicio do jogo
+        if self.jvelha.getJogador() == 1:
+            self.jogada(None, None,1)
+        else:
+            pass
 
 
     def click_r1(self):
@@ -384,9 +381,38 @@ class Ui_MainWindow(object):
         self.lineEdit_porta.setEnabled(True)
         self.lineEdit_ip.setEnabled(True)
 
-    def jogada(self):
-        if(self.jvelha.getContJog() < 8):
+    def jogada(self, x=None, y=None, player):
+        
+        if(self.jvelha.getContJog() < 9):
             self.jvelha.addContJog()
+            
+            if player==1:
+                if self.jvelha.getNivel() == 0:
+                    pass
+                elif self.jvelha.getNivel() == 1:
+                    pass
+
+            else:
+                self.jvelha.tab.setLocal(Point(x,y),-1)
+                
+                if [x,y] == [0,0]:
+                    self.pushButton_1.setText("X")
+                elif [x,y] == [0,1]:
+                    self.pushButton_2.setText("X")
+                elif [x,y] == [0,2]:
+                    self.pushButton_3.setText("X")
+                elif [x,y] == [1,0]:
+                    self.pushButton_4.setText("X")
+                elif [x,y] == [1,1]:
+                    self.pushButton_5.setText("X")
+                elif [x,y] == [1,2]:
+                    self.pushButton_6.setText("X")
+                elif [x,y] == [2,0]:
+                    self.pushButton_7.setText("X")
+                elif [x,y] == [2,1]:
+                    self.pushButton_8.setText("X")
+                elif [x,y] == [2,2]:
+                    self.pushButton_9.setText("X")        
         else:
             '''
             // fim de jogo
