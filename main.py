@@ -12,6 +12,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from jvelha import JVelha
 from point import Point
 
+import time
+
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
 from PyQt5.QtGui import QIcon
@@ -295,38 +297,47 @@ class Ui_MainWindow(object):
     def click_1(self):
         if(self.click[0] == False):
             self.jogada(0, 0, -1)
+            self.jogada(None, None, 1)
 
     def click_2(self):
         if(self.click[1] == False):
             self.jogada(0, 1, -1)
+            self.jogada(None, None, 1)
 
     def click_3(self):
         if(self.click[2] == False):
             self.jogada(0, 2, -1)
+            self.jogada(None, None, 1)
 
     def click_4(self):
         if(self.click[3] == False):
             self.jogada(1, 0, -1)
+            self.jogada(None, None, 1)
 
     def click_5(self):
         if(self.click[4] == False):
             self.jogada(1, 1, -1)
+            self.jogada(None, None, 1)
 
     def click_6(self):
         if(self.click[5] == False):
             self.jogada(1, 2, -1)
+            self.jogada(None, None, 1)
 
     def click_7(self):
         if(self.click[6] == False):
             self.jogada(2, 0, -1)
+            self.jogada(None, None, 1)
 
     def click_8(self):
         if(self.click[7] == False):
             self.jogada(2, 1, -1)
+            self.jogada(None, None, 1)
 
     def click_9(self):
         if(self.click[8] == False):
             self.jogada(2, 2, -1)
+            self.jogada(None, None, 1)
 
     def click_play(self):
         self.pushButton_1.setText("")
@@ -342,7 +353,8 @@ class Ui_MainWindow(object):
         self.jvelha.tab.clear()
         self.jvelha.zerarContJog()
 
-        self.click = [False, False, False, False, False, False, False, False, False]
+        self.click = [False, False, False, False,
+            False, False, False, False, False]
 
         # análise das configurações
 
@@ -387,7 +399,7 @@ class Ui_MainWindow(object):
         self.lineEdit_ip.setEnabled(True)
 
     def marca(self, x, y, jogador):
-        
+
         if [x, y] == [0, 0]:
             self.pushButton_1.setText(jogador == -1 and "X" or "O")
             self.click[0] = True
@@ -425,26 +437,25 @@ class Ui_MainWindow(object):
             self.click[8] = True
 
     def jogada(self, x, y, player):
-        
-        if self.jvelha.isVencedor(self.jvelha.tab, 1) or not self.jvelha.isVencedor(self.jvelha.tab, -1):
-            
-            print("alguém ganhou!!!!")
-            
-            pass
 
-        else:
-            if self.jvelha.getContJog() < 9:
-                self.jvelha.addContJog()
+        if self.jvelha.getContJog() < 9:
+            self.jvelha.addContJog()
 
-                if player == 1: #FASE PC
+            if player == 1:  # FASE PC
 
-                    print("pc2")
+                print("pc2")
 
-                    if self.jvelha.getNivel() == 0: #NIVEL FACIL
-                        print("pc4")
-                        pass
-                    elif self.jvelha.getNivel() == 1: #NIVEL DIFICIL 
-                        print("pc3")
+                if self.jvelha.getNivel() == 0:  # NIVEL FACIL
+                    print("pc4")
+                    pass
+                elif self.jvelha.getNivel() == 1:  # NIVEL DIFICIL
+                    print("pc3")
+                    if self.jvelha.tab.contNone() == 9:
+                        time.sleep(1)
+                        self.jvelha.tab.setLocal(Point(1, 1), 1)
+                        self.marca(1, 1, 1)
+                    else:
+
                         aux = []
                         aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), self.jvelha.tab.contNone(), 1)
 
@@ -453,21 +464,47 @@ class Ui_MainWindow(object):
                         self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                         self.marca(aux[0], aux[1], 1)
 
-                    else:
-                        pass
-
-                else:           
-                    self.jvelha.tab.setLocal(Point(x, y), -1)
-                    self.marca(x,y,-1)
-
-                    self.jogada(None,None,1)
             else:
-                '''
-                // fim de jogo
-                // jogar novamente
-                // limpar jogo '''
+                self.jvelha.tab.setLocal(Point(x, y), -1)
+                self.marca(x, y, -1)
 
-                self.jvelha.zerarContJog()
+        else:
+            '''
+            // fim de jogo
+            // jogar novamente
+            // limpar jogo '''
+
+            self.jvelha.zerarContJog()
+
+
+
+            print("FIM DE JOGO")
+
+        
+        # verifica se há vencedor
+        if self.jvelha.isVencedor(self.jvelha.tab, 1):
+            print("COMPUTADOR ganhou!!!!")
+            self.click = [True, True, True, True, True, True, True, True, True]
+
+            #fim de jogo
+
+
+
+        elif self.jvelha.isVencedor(self.jvelha.tab, -1):
+            print("VOCÊ ganhou!!!!")
+            self.click = [True, True, True, True, True, True, True, True, True]
+
+            #fim de jogo
+
+        else:
+            if self.jvelha.getContJog==9:
+                print("EMPATE!!!!!!!!!!!")
+
+                #fim de jogo
+
+
+
+
 
 
 if __name__ == "__main__":
