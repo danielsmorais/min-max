@@ -94,7 +94,7 @@ class JVelha(object):
 
     def minimax(self, tab, prof, player):
 
-        if player == 1: # 1 PC | -1 PESSOA
+        if player == 1: # 1 PC | -1 HUMANO
             best = [-1, -1, -inf]
         else:
             best = [-1, -1, +inf]
@@ -103,7 +103,7 @@ class JVelha(object):
             score = self.heuristica(tab)
             return [-1, -1, score]
 
-        for item in tab.getNone(): #lista de points
+        for item in tab.getNone(): #lista de None points
 
             tab.setLocal(item, player)
             score = self.minimax(tab, prof - 1, -player)
