@@ -440,17 +440,20 @@ class Ui_MainWindow(object):
             self.jvelha.addContJog()
 
             if player == 1:  # FASE PC
+                # NIVEL FACIL
+                if self.jvelha.getNivel() == 0:  
+                    
+                    aux = []
+                    aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), 2, 1)  # self.jvelha.tab.contNone()
 
-                if self.jvelha.getNivel() == 0:  # NIVEL FACIL
+                    print(aux)
 
-                    # NIVEL FACIL MIMAX BASICO
-                    #
-                    #
-                    #
-                    #
-                    #
-                    pass
-                elif self.jvelha.getNivel() == 1:  # NIVEL DIFICIL
+                    self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
+                    self.marca(aux[0], aux[1], 1)
+
+                # NIVEL DIFICIL
+                elif self.jvelha.getNivel() == 1:  
+
                     if self.jvelha.tab.contNone() == 9:
                         time.sleep(1)
                         self.jvelha.tab.setLocal(Point(1, 1), 1)
@@ -465,7 +468,7 @@ class Ui_MainWindow(object):
                         self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                         self.marca(aux[0], aux[1], 1)
 
-            else:
+            else:  # FASE HUMANA
                 self.jvelha.tab.setLocal(Point(x, y), -1)
                 self.marca(x, y, -1)
 
@@ -503,83 +506,6 @@ class Ui_MainWindow(object):
 
 
     # FIM jogada() --------------------------------------------------------------------------------------
-
-    def jogadabasica(self, x, y, player):
-
-        if self.jvelha.tab.contNone() != 0:
-            self.jvelha.addContJog()
-
-            if player == 1:  # FASE PC
-
-                print("pc2")
-
-                if self.jvelha.getNivel() == 0:  # NIVEL FACIL
-
-                    # NIVEL FACIL MIMAX BASICO
-                    #
-                    #
-                    #
-                    #
-                    #
-                    pass
-                elif self.jvelha.getNivel() == 1:  # NIVEL DIFICIL
-                    if self.jvelha.tab.contNone() == 9:
-                        time.sleep(1)
-                        self.jvelha.tab.setLocal(Point(1, 1), 1)
-                        self.marca(1, 1, 1)
-                    else:
-
-                        aux = []
-                        aux = self.jvelha.minimax(
-                            self.jvelha.getTabuleiro(), self.jvelha.tab.contNone(), 1)
-
-                        print(aux)
-
-                        self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
-                        self.marca(aux[0], aux[1], 1)
-
-            else:
-                self.jvelha.tab.setLocal(Point(x, y), -1)
-                self.marca(x, y, -1)
-
-        else:
-            '''
-            // fim de jogo
-            // jogar novamente
-            // limpar jogo '''
-
-            self.jvelha.zerarContJog()
-
-            print("FIM DE JOGO")
-
-        # verifica se há vencedor
-        if self.jvelha.isVencedor(self.jvelha.tab, 1):
-            print("COMPUTADOR ganhou!!!!")
-            self.click = [True, True, True, True, True, True, True, True, True]
-
-            #fim de jogo
-
-        elif self.jvelha.isVencedor(self.jvelha.tab, -1):
-            print("VOCÊ ganhou!!!!")
-            self.click = [True, True, True, True, True, True, True, True, True]
-
-            #fim de jogo
-
-        else:
-            if self.jvelha.tab.contNone() == 0:
-                print("EMPATE!!!!!!!!!!!")
-
-                #fim de jogo
-
-    # FIM jogadabasica() --------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
