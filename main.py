@@ -52,9 +52,10 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.groupBox)
         self.label.setGeometry(QtCore.QRect(40, 40, 121, 17))
         self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
+        self.label.setObjectName("label")   
+
         self.pushButton_play = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton_play.setGeometry(QtCore.QRect(60, 330, 89, 25))
+        self.pushButton_play.setGeometry(QtCore.QRect(60, 230, 89, 25))  # (60, 330, 89, 25)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(78, 154, 6))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -96,18 +97,18 @@ class Ui_MainWindow(object):
         self.lineEdit_porta.setPlaceholderText("")
         self.lineEdit_porta.setObjectName("lineEdit_porta")
         self.label_6 = QtWidgets.QLabel(self.groupBox)
-        self.label_6.setGeometry(QtCore.QRect(20, 170, 38, 25))
+        self.label_6.setGeometry(QtCore.QRect(20, 290, 150, 25))
         self.label_6.setAlignment(
             QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_6.setObjectName("label_6")
         self.comboBox_inicia = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox_inicia.setGeometry(QtCore.QRect(20, 290, 161, 25))
+        self.comboBox_inicia.setGeometry(QtCore.QRect(20, 150, 161, 25)) #(20, 290, 161, 25)
         self.comboBox_inicia.setObjectName("comboBox_inicia")
         self.comboBox_inicia.addItem("")
         self.comboBox_inicia.addItem("")
         self.comboBox_inicia.addItem("")
         self.comboBox_nivel = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox_nivel.setGeometry(QtCore.QRect(20, 250, 161, 25))
+        self.comboBox_nivel.setGeometry(QtCore.QRect(20, 190, 161, 25)) #(20, 250, 161, 25)
         self.comboBox_nivel.setObjectName("comboBox_nivel")
         self.comboBox_nivel.addItem("")
         self.comboBox_nivel.addItem("")
@@ -242,7 +243,15 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
 
-        #self.radioButton_1.setVisible(False)
+        self.radioButton_1.setVisible(False)
+        self.radioButton_3.setVisible(False)
+        self.lineEdit_ip.setVisible(False)
+        self.lineEdit_porta.setVisible(False)
+        self.label_5.setVisible(False)
+
+
+        #self.label_6.setVisible(True)
+
 
         # VARIAVEIS
         self.click = [True, True, True, True, True, True, True, True, True]
@@ -261,12 +270,13 @@ class Ui_MainWindow(object):
         self.radioButton_3.setText(_translate("MainWindow", "PC x iPC"))
         self.radioButton_1.setText(_translate("MainWindow", "Humano X Humano"))
         self.label.setText(_translate("MainWindow", "CONFIGURAÇÃO"))
+
         self.pushButton_play.setText(_translate("MainWindow", "Jogar"))
         self.lineEdit_ip.setInputMask(
             _translate("MainWindow", "000.000.000.000"))
         self.lineEdit_ip.setText(_translate("MainWindow", "..."))
         self.label_5.setText(_translate("MainWindow", "IP"))
-        self.label_6.setText(_translate("MainWindow", "Porta"))
+        self.label_6.setText(_translate("MainWindow", ">> "))
         self.comboBox_inicia.setItemText(
             0, _translate("MainWindow", "Quem inicia?"))
         self.comboBox_inicia.setItemText(1, _translate("MainWindow", "PC"))
@@ -352,6 +362,8 @@ class Ui_MainWindow(object):
         self.pushButton_7.setText("")
         self.pushButton_8.setText("")
         self.pushButton_9.setText("")
+
+        self.label_6.setText(">> ")
 
 
         self.pushButton_1.setStyleSheet('QPushButton {color: black;}')
@@ -458,9 +470,9 @@ class Ui_MainWindow(object):
                 # NIVEL FACIL
                 if self.jvelha.getNivel() == 0:  
                     aux = []
-                    aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), 2, 1)  # self.jvelha.tab.contNone()
+                    aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), 2, 1)
 
-                    print(aux)
+                    #print(aux)
 
                     self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                     self.marca(aux[0], aux[1], 1)
@@ -492,29 +504,34 @@ class Ui_MainWindow(object):
             // limpar jogo '''
 
             #self.jvelha.zerarContJog()
-            print("FIM DE JOGO")
+            #print("FIM DE JOGO")
 
         
         # verifica se há vencedor
         if self.jvelha.isVencedor(self.jvelha.tab, 1):
-            print("COMPUTADOR ganhou!!!!")
+            #print("COMPUTADOR ganhou!!!!")
             self.click = [True, True, True, True, True, True, True, True, True]
 
             self.desenha(1)
 
+            self.label_6.setText(">> PC GANHOU")
+
             #fim de jogo
 
         elif self.jvelha.isVencedor(self.jvelha.tab, -1):
-            print("VOCÊ ganhou!!!!")
+            #print("VOCÊ ganhou!!!!")
             self.click = [True, True, True, True, True, True, True, True, True]
 
             self.desenha(-1)
+
+            self.label_6.setText(">> VOCÊ GANHOU")
 
             #fim de jogo
 
         else:
             if self.jvelha.tab.contNone() == 0:
-                print("EMPATE!!!!!!!!!!!")
+                #print("EMPATE!!!!!!!!!!!")
+                self.label_6.setText(">> EMPATE")
 
                 #fim de jogo
 
