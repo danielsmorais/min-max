@@ -351,8 +351,7 @@ class Ui_MainWindow(object):
         self.pushButton_9.setText("")
 
         self.jvelha.tab.clear()
-        self.jvelha.zerarContJog()
-
+        
         self.click = [False, False, False, False,
             False, False, False, False, False]
 
@@ -376,7 +375,6 @@ class Ui_MainWindow(object):
         # inicio do jogo
         if self.jvelha.getJogador() == 1:
             self.jogada(None, None, 1)
-            print("pc1")
         else:
             pass
 
@@ -438,18 +436,21 @@ class Ui_MainWindow(object):
 
     def jogada(self, x, y, player):
 
-        if self.jvelha.getContJog() < 9:
+        if self.jvelha.tab.contNone() != 0:
             self.jvelha.addContJog()
 
             if player == 1:  # FASE PC
 
-                print("pc2")
-
                 if self.jvelha.getNivel() == 0:  # NIVEL FACIL
-                    print("pc4")
+
+                    # NIVEL FACIL MIMAX BASICO
+                    #
+                    #
+                    #
+                    #
+                    #
                     pass
                 elif self.jvelha.getNivel() == 1:  # NIVEL DIFICIL
-                    print("pc3")
                     if self.jvelha.tab.contNone() == 9:
                         time.sleep(1)
                         self.jvelha.tab.setLocal(Point(1, 1), 1)
@@ -457,7 +458,7 @@ class Ui_MainWindow(object):
                     else:
 
                         aux = []
-                        aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), self.jvelha.tab.contNone(), 1)
+                        aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), self.jvelha.tab.contNone(), 1) 
 
                         print(aux)
 
@@ -488,7 +489,75 @@ class Ui_MainWindow(object):
 
             #fim de jogo
 
+        elif self.jvelha.isVencedor(self.jvelha.tab, -1):
+            print("VOCÊ ganhou!!!!")
+            self.click = [True, True, True, True, True, True, True, True, True]
 
+            #fim de jogo
+
+        else:
+            if self.jvelha.tab.contNone() == 0:
+                print("EMPATE!!!!!!!!!!!")
+
+                #fim de jogo
+
+
+    # FIM jogada() --------------------------------------------------------------------------------------
+
+    def jogadabasica(self, x, y, player):
+
+        if self.jvelha.tab.contNone() != 0:
+            self.jvelha.addContJog()
+
+            if player == 1:  # FASE PC
+
+                print("pc2")
+
+                if self.jvelha.getNivel() == 0:  # NIVEL FACIL
+
+                    # NIVEL FACIL MIMAX BASICO
+                    #
+                    #
+                    #
+                    #
+                    #
+                    pass
+                elif self.jvelha.getNivel() == 1:  # NIVEL DIFICIL
+                    if self.jvelha.tab.contNone() == 9:
+                        time.sleep(1)
+                        self.jvelha.tab.setLocal(Point(1, 1), 1)
+                        self.marca(1, 1, 1)
+                    else:
+
+                        aux = []
+                        aux = self.jvelha.minimax(
+                            self.jvelha.getTabuleiro(), self.jvelha.tab.contNone(), 1)
+
+                        print(aux)
+
+                        self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
+                        self.marca(aux[0], aux[1], 1)
+
+            else:
+                self.jvelha.tab.setLocal(Point(x, y), -1)
+                self.marca(x, y, -1)
+
+        else:
+            '''
+            // fim de jogo
+            // jogar novamente
+            // limpar jogo '''
+
+            self.jvelha.zerarContJog()
+
+            print("FIM DE JOGO")
+
+        # verifica se há vencedor
+        if self.jvelha.isVencedor(self.jvelha.tab, 1):
+            print("COMPUTADOR ganhou!!!!")
+            self.click = [True, True, True, True, True, True, True, True, True]
+
+            #fim de jogo
 
         elif self.jvelha.isVencedor(self.jvelha.tab, -1):
             print("VOCÊ ganhou!!!!")
@@ -497,10 +566,16 @@ class Ui_MainWindow(object):
             #fim de jogo
 
         else:
-            if self.jvelha.getContJog==9:
+            if self.jvelha.tab.contNone() == 0:
                 print("EMPATE!!!!!!!!!!!")
 
                 #fim de jogo
+
+    # FIM jogadabasica() --------------------------------------------------------------------------------------
+
+
+
+
 
 
 
