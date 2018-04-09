@@ -68,6 +68,30 @@ class JVelha(object):
         else:
             return False
 
+
+    def vencedor(self, tab, jogador):
+
+        vencer = [[tab.getLocal(Point(0, 0)), tab.getLocal(Point(0, 1)), tab.getLocal(Point(0, 2))],
+                  [tab.getLocal(Point(1, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(1, 2))],
+                  [tab.getLocal(Point(2, 0)), tab.getLocal(Point(2, 1)), tab.getLocal(Point(2, 2))],
+
+                  [tab.getLocal(Point(0, 0)), tab.getLocal(Point(1, 0)), tab.getLocal(Point(2, 0))],
+                  [tab.getLocal(Point(0, 1)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(2, 1))],
+                  [tab.getLocal(Point(0, 2)), tab.getLocal(Point(1, 2)), tab.getLocal(Point(2, 2))],
+
+                  [tab.getLocal(Point(0, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(2, 2))],
+                  [tab.getLocal(Point(2, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(0, 2))]]
+
+        opcao = (
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6])
+
+        for indice, valor in enumerate(vencer):
+            if [jogador, jogador, jogador] == valor:
+                return opcao[indice]
+
+
     def minimax(self, tab, prof, player):
 
         if player == 1: # 1 PC | -1 PESSOA
@@ -99,8 +123,14 @@ class JVelha(object):
 if __name__ == "__main__":
 
     jogo = JVelha()
-    casa1 = []
-    casa1 = jogo.minimax(
-        Tab([[1, None, -1], [None, -1, None], [1, -1, None]]), 2, 1)  # Tab([[1, -1, -1], [1, -1, -1], [1, 1, -1]]), 2, 1)
+    #casa1 = []
+    #casa1 = jogo.minimax(Tab([[1, None, -1], [None, -1, None], [1, -1, None]]), 2, 1)  # Tab([[1, -1, -1], [1, -1, -1], [1, 1, -1]]), 2, 1)
+    #print(casa1[0], " ", casa1[1], " ", casa1[2])
 
-    print(casa1[0], " ", casa1[1], " ", casa1[2])
+    ff = jogo.vencedor(Tab([[1, None, -1], [1, -1, None], [1, -1, None]]), 1)
+
+    print(ff)
+
+
+
+

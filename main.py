@@ -241,6 +241,9 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+
+        #self.radioButton_1.setVisible(False)
+
         # VARIAVEIS
         self.click = [True, True, True, True, True, True, True, True, True]
 
@@ -350,6 +353,18 @@ class Ui_MainWindow(object):
         self.pushButton_8.setText("")
         self.pushButton_9.setText("")
 
+
+        self.pushButton_1.setStyleSheet('QPushButton {color: black;}')
+        self.pushButton_2.setStyleSheet('QPushButton {color: black;}')
+        self.pushButton_3.setStyleSheet('QPushButton {color: black;}')
+        self.pushButton_4.setStyleSheet('QPushButton {color: black;}')
+        self.pushButton_5.setStyleSheet('QPushButton {color: black;}')
+        self.pushButton_6.setStyleSheet('QPushButton {color: black;}')
+        self.pushButton_7.setStyleSheet('QPushButton {color: black;}')
+        self.pushButton_8.setStyleSheet('QPushButton {color: black;}')
+        self.pushButton_9.setStyleSheet('QPushButton {color: black;}')
+
+
         self.jvelha.tab.clear()
         
         self.click = [False, False, False, False,
@@ -399,7 +414,7 @@ class Ui_MainWindow(object):
     def marca(self, x, y, jogador):
 
         if [x, y] == [0, 0]:
-            self.pushButton_1.setText(jogador == -1 and "X" or "O")
+            self.pushButton_1.setText(jogador == -1 and "X" or "O")            
             self.click[0] = True
 
         elif [x, y] == [0, 1]:
@@ -437,12 +452,11 @@ class Ui_MainWindow(object):
     def jogada(self, x, y, player):
 
         if self.jvelha.tab.contNone() != 0:
-            self.jvelha.addContJog()
+            #self.jvelha.addContJog()
 
             if player == 1:  # FASE PC
                 # NIVEL FACIL
                 if self.jvelha.getNivel() == 0:  
-                    
                     aux = []
                     aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), 2, 1)  # self.jvelha.tab.contNone()
 
@@ -459,7 +473,6 @@ class Ui_MainWindow(object):
                         self.jvelha.tab.setLocal(Point(1, 1), 1)
                         self.marca(1, 1, 1)
                     else:
-
                         aux = []
                         aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), self.jvelha.tab.contNone(), 1) 
 
@@ -478,10 +491,7 @@ class Ui_MainWindow(object):
             // jogar novamente
             // limpar jogo '''
 
-            self.jvelha.zerarContJog()
-
-
-
+            #self.jvelha.zerarContJog()
             print("FIM DE JOGO")
 
         
@@ -490,11 +500,15 @@ class Ui_MainWindow(object):
             print("COMPUTADOR ganhou!!!!")
             self.click = [True, True, True, True, True, True, True, True, True]
 
+            self.desenha(1)
+
             #fim de jogo
 
         elif self.jvelha.isVencedor(self.jvelha.tab, -1):
             print("VOCÊ ganhou!!!!")
             self.click = [True, True, True, True, True, True, True, True, True]
+
+            self.desenha(-1)
 
             #fim de jogo
 
@@ -506,6 +520,39 @@ class Ui_MainWindow(object):
 
 
     # FIM jogada() --------------------------------------------------------------------------------------
+
+    def desenha(self, jogador):
+        
+        des = self.jvelha.vencedor(self.jvelha.tab, jogador)
+
+        for item in des:
+            if item == 0:
+                self.pushButton_1.setStyleSheet('QPushButton {color: red;}')
+
+            elif item == 1:
+                self.pushButton_2.setStyleSheet('QPushButton {color: red;}')
+
+            elif item == 2:
+                self.pushButton_3.setStyleSheet('QPushButton {color: red;}')
+
+            elif item == 3:
+                self.pushButton_4.setStyleSheet('QPushButton {color: red;}')
+
+            elif item == 4:
+                self.pushButton_5.setStyleSheet('QPushButton {color: red;}')
+
+            elif item == 5:
+                self.pushButton_6.setStyleSheet('QPushButton {color: red;}')
+
+            elif item == 6:
+                self.pushButton_7.setStyleSheet('QPushButton {color: red;}')
+
+            elif item == 7:
+                self.pushButton_8.setStyleSheet('QPushButton {color: red;}')
+
+            elif item == 8:
+                self.pushButton_9.setStyleSheet('QPushButton {color: red;}')
+        
 
 
 if __name__ == "__main__":
