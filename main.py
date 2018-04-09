@@ -488,7 +488,7 @@ class Ui_MainWindow(object):
                         aux = []
                         aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), self.jvelha.tab.contNone(), 1) 
 
-                        print(aux)
+                        #print(aux)
 
                         self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                         self.marca(aux[0], aux[1], 1)
