@@ -36,31 +36,26 @@ def alinhamento(tab, player):
         if [player, player, player] == valor:
             alinhamento += player
 
-    print(alinhamento)
-
     return alinhamento
 
 
-def heuri(tab,player):
+def heuristica(tab,player):
 
-    score = alinhamento(copy.deepcopy(tab), player)
-    tab.show()
-
-    print(score)
-
-    score1 = alinhamento(copy.deepcopy(tab), -player)
-    
-    print(score1)
+    score  = alinhamento(copy.deepcopy(tab),  player)
+    score += alinhamento(copy.deepcopy(tab), -player)
 
     return score
-
-
-    
-    
+  
 
 def minimax(tab, prof, player):
     
-    best = []
+    if player == 1: # 1 PC | -1 HUMANO
+        best = [-1, -1, -inf]
+    else:
+        best = [-1, -1, +inf]
+
+    if(prof==0 or tab.contNone()==0):
+        return heuristica(tab,player)
 
     for item in tab.getNone():  # lista de None points
         tab.setLocal(item, player)
@@ -80,8 +75,10 @@ def minimax(tab, prof, player):
 
 if __name__ == "__main__":
 
-    tab = Tab([[None, None, None], [None, None, None], [None, None, None]])
+    tab = Tab([[None, 1, None], [None, 1, None], [None, None, -1]])
     
     #minimax(tab,9,1)
-    heuri(tab,1)
+    print(heuristica(tab, 1))
+
+    minimax(tab,1,1)
 
