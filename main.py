@@ -462,73 +462,70 @@ class Ui_MainWindow(object):
             self.click[8] = True
 
     def jogada(self, x, y, player):
+        #if self.jvelha.tab
+        if (self.jvelha.isVencedor(self.jvelha.tab, 1) or self.jvelha.isVencedor(self.jvelha.tab, -1)!=True):
+            if self.jvelha.tab.contNone() != 0:
+                #self.jvelha.addContJog()
 
-        if self.jvelha.tab.contNone() != 0:
-            #self.jvelha.addContJog()
+                if player == 1:  # FASE PC
+                    # NIVEL FACIL
+                    if self.jvelha.getNivel() == 0:  
+                        aux = []
+                        aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), 1, 1)
 
-            if player == 1:  # FASE PC
-                # NIVEL FACIL
-                if self.jvelha.getNivel() == 0:  
-                    aux = []
-                    aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), 1, 1)
+                        #print(aux)
 
-                    #print(aux)
+                        self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
+                        self.marca(aux[0], aux[1], 1)
 
-                    self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
-                    self.marca(aux[0], aux[1], 1)
+                    # NIVEL DIFICIL -- MODIFICAR, AINDA ESTA FACIL
+                    elif self.jvelha.getNivel() == 1:  
 
-                # NIVEL DIFICIL -- MODIFICAR, AINDA ESTA FACIL
-                elif self.jvelha.getNivel() == 1:  
+                        aux = []
+                        aux = self.jvelha.minimax(self.jvelha.getTabuleiro(),3, 1)
 
-                    aux = []
-                    aux = self.jvelha.minimax(self.jvelha.getTabuleiro(),2, 1)
+                        #print(aux)
 
-                    #print(aux)
+                        self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
+                        self.marca(aux[0], aux[1], 1)
 
-                    self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
-                    self.marca(aux[0], aux[1], 1)
+                else:  # FASE HUMANA
+                    self.jvelha.tab.setLocal(Point(x, y), -1)
+                    self.marca(x, y, -1)
 
-            else:  # FASE HUMANA
-                self.jvelha.tab.setLocal(Point(x, y), -1)
-                self.marca(x, y, -1)
+            else:
+                '''
+                // fim de jogo
+                // jogar novamente
+                // limpar jogo '''
 
-        else:
-            '''
-            // fim de jogo
-            // jogar novamente
-            // limpar jogo '''
+                #self.jvelha.zerarContJog()
+                #print("FIM DE JOGO")
 
-            #self.jvelha.zerarContJog()
-            #print("FIM DE JOGO")
-
-        
-        # verifica se há vencedor
-        if self.jvelha.isVencedor(self.jvelha.tab, 1):
-            #print("COMPUTADOR ganhou!!!!")
-            self.click = [True, True, True, True, True, True, True, True, True]
-
-            self.desenha(1)
-
-            self.label_6.setText(">> PC GANHOU")
-
-            #fim de jogo
-
-        elif self.jvelha.isVencedor(self.jvelha.tab, -1):
-            #print("VOCÊ ganhou!!!!")
-            self.click = [True, True, True, True, True, True, True, True, True]
-
-            self.desenha(-1)
-
-            self.label_6.setText(">> VOCÊ GANHOU")
-
-            #fim de jogo
-
-        else:
-            if self.jvelha.tab.contNone() == 0:
-                #print("EMPATE!!!!!!!!!!!")
-                self.label_6.setText(">> EMPATE")
+            
+            # verifica se há vencedor
+            if self.jvelha.isVencedor(self.jvelha.tab, -1):
+                
+                self.click = [True, True, True, True, True, True, True, True, True]
+                self.desenha(-1)
+                self.label_6.setText(">> VOCÊ GANHOU")
 
                 #fim de jogo
+
+            elif self.jvelha.isVencedor(self.jvelha.tab, 1):
+                
+                self.click = [True, True, True, True, True, True, True, True, True]
+                self.desenha(1)
+                self.label_6.setText(">> PC GANHOU")
+
+                #fim de jogo
+
+            else:
+                if self.jvelha.tab.contNone() == 0:
+                    #print("EMPATE!!!!!!!!!!!")
+                    self.label_6.setText(">> EMPATE")
+
+                    #fim de jogo
 
 
     # FIM jogada() --------------------------------------------------------------------------------------
