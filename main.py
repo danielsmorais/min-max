@@ -470,28 +470,23 @@ class Ui_MainWindow(object):
                 # NIVEL FACIL
                 if self.jvelha.getNivel() == 0:  
                     aux = []
-                    aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), 2, 1)
+                    aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), 1, 1)
 
                     #print(aux)
 
                     self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                     self.marca(aux[0], aux[1], 1)
 
-                # NIVEL DIFICIL
+                # NIVEL DIFICIL -- MODIFICAR, AINDA ESTA FACIL
                 elif self.jvelha.getNivel() == 1:  
 
-                    if self.jvelha.tab.contNone() == 9:
-                        time.sleep(1)
-                        self.jvelha.tab.setLocal(Point(1, 1), 1)
-                        self.marca(1, 1, 1)
-                    else:
-                        aux = []
-                        aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), self.jvelha.tab.contNone(), 1) 
+                    aux = []
+                    aux = self.jvelha.minimax(self.jvelha.getTabuleiro(),2, 1)
 
-                        #print(aux)
+                    #print(aux)
 
-                        self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
-                        self.marca(aux[0], aux[1], 1)
+                    self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
+                    self.marca(aux[0], aux[1], 1)
 
             else:  # FASE HUMANA
                 self.jvelha.tab.setLocal(Point(x, y), -1)

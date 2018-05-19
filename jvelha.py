@@ -6,6 +6,7 @@ from point import Point
 from no import No
 from tabuleiro import Tabuleiro as Tab
 from arvore import Arvore as Arv
+import copy
 
 from math import inf
 
@@ -41,14 +42,45 @@ class JVelha(object):
     def getJogador(self):
         return self.jogador
 
-    def heuristica(self, tab):
 
-        if self.isVencedor(tab, 1):
-            return 1
-        elif self.isVencedor(tab, -1):
-            return -1
-        else:
-            return 0
+    def alinhamento(self,tab, player):
+
+        #adiciona o seu valor às celulas vazias
+        for item in tab.getNone():              # lista de None points
+            tab.setLocal(item, player)
+
+        #verificar alinhamentos
+        vencer = [[tab.getLocal(Point(0, 0)), tab.getLocal(Point(0, 1)), tab.getLocal(Point(0, 2))],
+                [tab.getLocal(Point(1, 0)), tab.getLocal(
+                    Point(1, 1)), tab.getLocal(Point(1, 2))],
+                [tab.getLocal(Point(2, 0)), tab.getLocal(
+                    Point(2, 1)), tab.getLocal(Point(2, 2))],
+
+                [tab.getLocal(Point(0, 0)), tab.getLocal(
+                    Point(1, 0)), tab.getLocal(Point(2, 0))],
+                [tab.getLocal(Point(0, 1)), tab.getLocal(
+                    Point(1, 1)), tab.getLocal(Point(2, 1))],
+                [tab.getLocal(Point(0, 2)), tab.getLocal(
+                    Point(1, 2)), tab.getLocal(Point(2, 2))],
+
+                [tab.getLocal(Point(0, 0)), tab.getLocal(
+                    Point(1, 1)), tab.getLocal(Point(2, 2))],
+                [tab.getLocal(Point(2, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(0, 2))]]
+
+        alinhamento = 0
+
+        for indice, valor in enumerate(vencer):
+            if [player, player, player] == valor:
+                alinhamento += player
+
+        return alinhamento
+
+    def heuristica(self,tab):
+        
+        score  = self.alinhamento(copy.deepcopy(tab), 1)
+        score += self.alinhamento(copy.deepcopy(tab),-1)
+
+        return score
 
     def isVencedor(self, tab, jogador):
 
