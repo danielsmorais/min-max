@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from jvelha import JVelha
 from point import Point
+import copy
 
 import time
 
@@ -110,6 +111,7 @@ class Ui_MainWindow(object):
         self.comboBox_nivel = QtWidgets.QComboBox(self.groupBox)
         self.comboBox_nivel.setGeometry(QtCore.QRect(20, 190, 161, 25)) #(20, 250, 161, 25)
         self.comboBox_nivel.setObjectName("comboBox_nivel")
+        self.comboBox_nivel.addItem("")
         self.comboBox_nivel.addItem("")
         self.comboBox_nivel.addItem("")
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
@@ -282,7 +284,8 @@ class Ui_MainWindow(object):
         self.comboBox_inicia.setItemText(1, _translate("MainWindow", "PC"))
         self.comboBox_inicia.setItemText(2, _translate("MainWindow", "Humano"))
         self.comboBox_nivel.setItemText(0, _translate("MainWindow", "Fácil"))
-        self.comboBox_nivel.setItemText(1, _translate("MainWindow", "Difícil"))
+        self.comboBox_nivel.setItemText(1, _translate("MainWindow", "Intermediario"))
+        self.comboBox_nivel.setItemText(2, _translate("MainWindow", "Difícil"))
         self.label_title.setText(_translate(
             "MainWindow", "Jogo da Velha / MIN-MAX"))
         self.label_autor.setText(_translate("MainWindow", "Daniel Morais"))
@@ -478,7 +481,7 @@ class Ui_MainWindow(object):
                         self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                         self.marca(aux[0], aux[1], 1)
 
-                    # NIVEL DIFICIL -- MODIFICAR, AINDA ESTA FACIL
+                    # NIVEL INTERMEDIARIO
                     elif self.jvelha.getNivel() == 1:  
 
                         aux = []
@@ -488,6 +491,22 @@ class Ui_MainWindow(object):
 
                         self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                         self.marca(aux[0], aux[1], 1)
+                    
+                    # NIVEL DIFICIL
+                    elif self.jvelha.getNivel() == 2:
+                        aux = []
+                        ponto = None
+                        if (len(self.jvelha.tab.getNone()) < 8 ):
+                            ponto = self.jvelha.hardrules(copy.deepcopy(self.jvelha.getTabuleiro()))
+                        
+                        #fazer alguma escolha
+                        if ponto == None:
+                            aux = self.jvelha.minimax(self.jvelha.getTabuleiro(),1, 1)
+                            self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
+                            self.marca(aux[0], aux[1], 1)
+                        else:
+                            self.jvelha.tab.setLocal(Point(ponto.x, ponto.y), 1)
+                            self.marca(ponto.x, ponto.y, 1)
 
                 else:  # FASE HUMANA
                     self.jvelha.tab.setLocal(Point(x, y), -1)

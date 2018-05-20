@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
 
-#DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
+# DANIEL MORAIS - CONTROLE INTELIGENTE - ENG. COMPUTAÇÃO - UFRN 2018.1
 
 from point import Point
 from no import No
 from tabuleiro import Tabuleiro as Tab
 from arvore import Arvore as Arv
 import copy
+import random
 
 from math import inf
 
+
 class JVelha(object):
-        
+
     def __init__(self):
         self.tab = Tab(None)
         self.contJog = 0
-        self.jogador = None #humano -1 | pc +1
-        self.nivel = None      
+        self.jogador = None  # humano -1 | pc +1
+        self.nivel = None
 
     def addContJog(self):
         self.contJog += 1
@@ -28,7 +30,7 @@ class JVelha(object):
         return self.contJog
 
     def getTabuleiro(self):
-        return self.tab    
+        return self.tab
 
     def setNivel(self, nivel):
         self.nivel = nivel
@@ -41,46 +43,6 @@ class JVelha(object):
 
     def getJogador(self):
         return self.jogador
-
-
-    def alinhamento(self,tab, player):
-
-        #adiciona o seu valor às celulas vazias
-        for item in tab.getNone():              # lista de None points
-            tab.setLocal(item, player)
-
-        #verificar alinhamentos
-        vencer = [[tab.getLocal(Point(0, 0)), tab.getLocal(Point(0, 1)), tab.getLocal(Point(0, 2))],
-                [tab.getLocal(Point(1, 0)), tab.getLocal(
-                    Point(1, 1)), tab.getLocal(Point(1, 2))],
-                [tab.getLocal(Point(2, 0)), tab.getLocal(
-                    Point(2, 1)), tab.getLocal(Point(2, 2))],
-
-                [tab.getLocal(Point(0, 0)), tab.getLocal(
-                    Point(1, 0)), tab.getLocal(Point(2, 0))],
-                [tab.getLocal(Point(0, 1)), tab.getLocal(
-                    Point(1, 1)), tab.getLocal(Point(2, 1))],
-                [tab.getLocal(Point(0, 2)), tab.getLocal(
-                    Point(1, 2)), tab.getLocal(Point(2, 2))],
-
-                [tab.getLocal(Point(0, 0)), tab.getLocal(
-                    Point(1, 1)), tab.getLocal(Point(2, 2))],
-                [tab.getLocal(Point(2, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(0, 2))]]
-
-        alinhamento = 0
-
-        for indice, valor in enumerate(vencer):
-            if [player, player, player] == valor:
-                alinhamento += player
-
-        return alinhamento
-
-    def heuristica(self,tab):
-        
-        score  = self.alinhamento(copy.deepcopy(tab), 1)
-        score += self.alinhamento(copy.deepcopy(tab),-1)
-
-        return score
 
     def isVencedor(self, tab, jogador):
 
@@ -99,7 +61,6 @@ class JVelha(object):
             return True
         else:
             return False
-
 
     def vencedor(self, tab, jogador):
 
@@ -123,19 +84,96 @@ class JVelha(object):
             if [jogador, jogador, jogador] == valor:
                 return opcao[indice]
 
+    def alinhamento(self, tab, player):
+
+        # adiciona o seu valor às celulas vazias
+        for item in tab.getNone():              # lista de None points
+            tab.setLocal(item, player)
+
+        # verificar alinhamentos
+        vencer = [[tab.getLocal(Point(0, 0)), tab.getLocal(Point(0, 1)), tab.getLocal(Point(0, 2))],
+                  [tab.getLocal(Point(1, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(1, 2))],
+                  [tab.getLocal(Point(2, 0)), tab.getLocal(Point(2, 1)), tab.getLocal(Point(2, 2))],
+
+                  [tab.getLocal(Point(0, 0)), tab.getLocal(Point(1, 0)), tab.getLocal(Point(2, 0))],
+                  [tab.getLocal(Point(0, 1)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(2, 1))],
+                  [tab.getLocal(Point(0, 2)), tab.getLocal(Point(1, 2)), tab.getLocal(Point(2, 2))],
+
+                  [tab.getLocal(Point(0, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(2, 2))],
+                  [tab.getLocal(Point(2, 0)), tab.getLocal(Point(1, 1)), tab.getLocal(Point(0, 2))]]
+
+        alinhamento = 0
+
+        for indice, valor in enumerate(vencer):
+            if [player, player, player] == valor:
+                alinhamento += player
+
+        return alinhamento
+
+
+    def heuristica(self, tab):
+
+        score = self.alinhamento(copy.deepcopy(tab), 1)
+        score += self.alinhamento(copy.deepcopy(tab), -1)
+
+        return score
+            
+
+    def hardrules(self, tab):
+
+        #Tentar sempre ganhar
+        for item in tab.getNone():  # lista de None points    
+            tab.setLocal(item,1)
+            if self.isVencedor(tab, 1)==True:
+                tab.setLocal(item,None)
+                return item
+            tab.setLocal(item, None)
+
+        #Bloquear o adversário
+        for item in tab.getNone():  # lista de None points
+            tab.setLocal(item, -1)
+            if self.isVencedor(tab, -1) == True:
+                tab.setLocal(item, None)
+                return item   
+            tab.setLocal(item, None)
+
+        #Bloquear triâgulos em torno do centro e cantos
+
+
+
+        # CONSERTAR AQUI
+
+
+        if ((tab.getLocal(Point(0, 0)) == -1 and tab.getLocal(Point(2, 2)) == -1) or 
+            (tab.getLocal(Point(2, 0)) == -1 and tab.getLocal(Point(0, 2)) == -1)) and (tab.getLocal(Point(1, 1)) == -1):
+            return random.choice([Point(0,1), Point(1,0), Point(1,2), Point(2,1)])
+
+        if (tab.getLocal(Point(0, 1)) == -1 or tab.getLocal(Point(1, 0)) == -1) and tab.getLocal(Point(0,0))==None:
+            return Point(0,0)
+        elif (tab.getLocal(Point(0,1)) == -1 or tab.getLocal(Point(1,2)) == -1) and tab.getLocal(Point(0,2))==None:
+            return Point(0,2)
+        elif (tab.getLocal(Point(1,0)) == -1 or tab.getLocal(Point(2,1)) == -1) and tab.getLocal(Point(2,0))==None:
+            return Point(2,0)
+        elif (tab.getLocal(Point(1,2)) == -1 or tab.getLocal(Point(2,1)) == -1) and tab.getLocal(Point(2,2))==None:
+            return Point(2,2)
+         
+
+        return None
+
+
 
     def minimax(self, tab, prof, player):
 
-        if player == 1: # 1 PC | -1 HUMANO
+        if player == 1:  # 1 PC | -1 HUMANO
             best = [-1, -1, -inf]
         else:
             best = [-1, -1, +inf]
 
-        if prof == 0 or self.isVencedor(tab, 1) or self.isVencedor(tab, -1):
+        if prof == 0 or self.isVencedor(tab, 1) or self.isVencedor(tab, -1) or len(self.tab.getNone()) == 0:
             score = self.heuristica(tab)
             return [-1, -1, score]
 
-        for item in tab.getNone(): #lista de None points
+        for item in tab.getNone():  # lista de None points
 
             tab.setLocal(item, player)
             score = self.minimax(tab, prof - 1, -player)
@@ -149,20 +187,16 @@ class JVelha(object):
                 if score[2] < best[2]:
                     best = score  # min value
 
-        return best     #retorna x y score
-        
+        return best  # retorna x y score
+
 
 if __name__ == "__main__":
 
     jogo = JVelha()
     #casa1 = []
-    #casa1 = jogo.minimax(Tab([[1, None, -1], [None, -1, None], [1, -1, None]]), 2, 1)  # Tab([[1, -1, -1], [1, -1, -1], [1, 1, -1]]), 2, 1)
+    # casa1 = jogo.minimax(Tab([[1, None, -1], [None, -1, None], [1, -1, None]]), 2, 1)  # Tab([[1, -1, -1], [1, -1, -1], [1, 1, -1]]), 2, 1)
     #print(casa1[0], " ", casa1[1], " ", casa1[2])
 
     ff = jogo.vencedor(Tab([[1, None, -1], [1, -1, None], [1, -1, None]]), 1)
 
     print(ff)
-
-
-
-
