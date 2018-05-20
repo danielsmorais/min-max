@@ -465,29 +465,23 @@ class Ui_MainWindow(object):
             self.click[8] = True
 
     def jogada(self, x, y, player):
-        #if self.jvelha.tab
+        
         if (self.jvelha.isVencedor(self.jvelha.tab, 1) or self.jvelha.isVencedor(self.jvelha.tab, -1)!=True):
             if self.jvelha.tab.contNone() != 0:
-                #self.jvelha.addContJog()
-
-                if player == 1:  # FASE PC
+                # FASE PC
+                if player == 1:  
                     # NIVEL FACIL
                     if self.jvelha.getNivel() == 0:  
                         aux = []
                         aux = self.jvelha.minimax(self.jvelha.getTabuleiro(), 1, 1)
 
-                        #print(aux)
-
                         self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                         self.marca(aux[0], aux[1], 1)
 
                     # NIVEL INTERMEDIARIO
-                    elif self.jvelha.getNivel() == 1:  
-
+                    elif self.jvelha.getNivel() == 1:
                         aux = []
                         aux = self.jvelha.minimax(self.jvelha.getTabuleiro(),3, 1)
-
-                        #print(aux)
 
                         self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                         self.marca(aux[0], aux[1], 1)
@@ -499,7 +493,6 @@ class Ui_MainWindow(object):
                         if (len(self.jvelha.tab.getNone()) < 8 ):
                             ponto = self.jvelha.hardrules(copy.deepcopy(self.jvelha.getTabuleiro()))
                         
-                        #fazer alguma escolha
                         if ponto == None:
                             aux = self.jvelha.minimax(self.jvelha.getTabuleiro(),1, 1)
                             self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
@@ -507,8 +500,8 @@ class Ui_MainWindow(object):
                         else:
                             self.jvelha.tab.setLocal(Point(ponto.x, ponto.y), 1)
                             self.marca(ponto.x, ponto.y, 1)
-
-                else:  # FASE HUMANA
+                # FASE HUMANA
+                else:  
                     self.jvelha.tab.setLocal(Point(x, y), -1)
                     self.marca(x, y, -1)
 

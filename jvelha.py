@@ -120,7 +120,7 @@ class JVelha(object):
             
 
     def hardrules(self, tab):
-
+        print("Ganhar")
         #Tentar sempre ganhar
         for item in tab.getNone():  # lista de None points    
             tab.setLocal(item,1)
@@ -129,6 +129,7 @@ class JVelha(object):
                 return item
             tab.setLocal(item, None)
 
+        print("Bloquear")
         #Bloquear o adversário
         for item in tab.getNone():  # lista de None points
             tab.setLocal(item, -1)
@@ -139,14 +140,14 @@ class JVelha(object):
 
         #Bloquear triâgulos em torno do centro e cantos
 
-
-
-        # CONSERTAR AQUI
-
+        print("Triangulos 1")
 
         if ((tab.getLocal(Point(0, 0)) == -1 and tab.getLocal(Point(2, 2)) == -1) or 
-            (tab.getLocal(Point(2, 0)) == -1 and tab.getLocal(Point(0, 2)) == -1)) and (tab.getLocal(Point(1, 1)) == -1):
+            (tab.getLocal(Point(2, 0)) == -1 and tab.getLocal(Point(0, 2)) == -1)) and (tab.getLocal(Point(1, 1)) == 1):
+            print("\n entrei!")
             return random.choice([Point(0,1), Point(1,0), Point(1,2), Point(2,1)])
+
+        print("Triangulos 2")
 
         if (tab.getLocal(Point(0, 1)) == -1 or tab.getLocal(Point(1, 0)) == -1) and tab.getLocal(Point(0,0))==None:
             return Point(0,0)
@@ -157,10 +158,8 @@ class JVelha(object):
         elif (tab.getLocal(Point(1,2)) == -1 or tab.getLocal(Point(2,1)) == -1) and tab.getLocal(Point(2,2))==None:
             return Point(2,2)
          
-
+        print("None")
         return None
-
-
 
     def minimax(self, tab, prof, player):
 
