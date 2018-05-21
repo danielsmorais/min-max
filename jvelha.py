@@ -168,7 +168,7 @@ class JVelha(object):
         else:
             best = [-1, -1, +inf]
 
-        if prof == 0 or self.isVencedor(tab, 1) or self.isVencedor(tab, -1) or len(self.tab.getNone()) == 0:
+        if prof == 0 or len(self.tab.getNone()) == 0:
             score = self.heuristica(tab)
             return [-1, -1, score]
 
