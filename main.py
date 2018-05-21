@@ -481,7 +481,7 @@ class Ui_MainWindow(object):
                     # NIVEL INTERMEDIARIO
                     elif self.jvelha.getNivel() == 1:
                         aux = []
-                        aux = self.jvelha.minimax(self.jvelha.getTabuleiro(),3, 1)
+                        aux = self.jvelha.minimax(self.jvelha.getTabuleiro(),2, 1)
 
                         self.jvelha.tab.setLocal(Point(aux[0], aux[1]), 1)
                         self.marca(aux[0], aux[1], 1)
